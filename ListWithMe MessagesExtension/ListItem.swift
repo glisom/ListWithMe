@@ -13,7 +13,7 @@ struct ListItem {
     
     var text: String?
     
-    var isComplete: Bool?
+    var isComplete: Bool = false
     
     var lastEdit: UUID?
     
@@ -25,13 +25,13 @@ extension ListItem {
         var items = [URLQueryItem]()
         
         if text != nil {
-            items.append(URLQueryItem(name: "text", value: text))
+            items.append(URLQueryItem(name: "text", value: text?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)))
         }
-        if isComplete != nil {
-            items.append(URLQueryItem(name: "isComplete", value: (isComplete ?? false) ? "true" : "false"))
-        }
+        
+        items.append(URLQueryItem(name: "isComplete", value: isComplete ? "true" : "false"))
+        
         if lastEdit != nil {
-            items.append(URLQueryItem(name: "lastEdit", value: lastEdit?.uuidString))
+            items.append(URLQueryItem(name: "lastEdit", value: lastEdit?.uuidString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)))
         }
         
         return items
@@ -39,20 +39,20 @@ extension ListItem {
     
     init?(queryItems: [URLQueryItem]) {
         var text: String?
-        var isComplete: Bool?
+        var isComplete: Bool = false
         var lastEdit: UUID?
         
         for queryItem in queryItems {
             guard let value = queryItem.value else { continue }
             
             if queryItem.name == "text" {
-                text = value
+                text = value.removingPercentEncoding
             }
             if queryItem.name == "isComplete" {
                 isComplete = (value == "true")
             }
             if queryItem.name == "lastEdit" {
-                lastEdit = UUID.init(uuidString: value)
+                lastEdit = UUID.init(uuidString: value.removingPercentEncoding!)
             }
         }
         self.text = text
@@ -83,18 +83,16 @@ extension List {
     init?(queryItems: [URLQueryItem]) {
         var listItems = [ListItem]()
         if queryItems.count % 3 == 0 {
-            var count = 0
+            var count = 1
             var subArray = [URLQueryItem]()
             for queryItem in queryItems {
-                if count != 2 {
-                    subArray.append(queryItem)
-                } else {
+                subArray.append(queryItem)
+                if count % 3 == 0 {
                     let listItem = ListItem(queryItems: subArray)
                     if let listItem = listItem {
                         listItems.append(listItem)
                     }
-                    subArray = [queryItem]
-                    count = 0
+                    subArray = [URLQueryItem]()
                 }
                 count += 1
             }

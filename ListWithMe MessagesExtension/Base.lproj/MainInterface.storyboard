@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="508"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="listItem" rowHeight="80" id="WYd-le-jrK" customClass="ListItemCell" customModule="ListWithMe_MessagesExtension" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="listItem" rowHeight="80" id="WYd-le-jrK" customClass="ListItemCell" customModule="ListWithMe_MessagesExtension" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WYd-le-jrK" id="4hW-yo-VXY">

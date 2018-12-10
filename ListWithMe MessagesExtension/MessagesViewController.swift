@@ -14,6 +14,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
     @IBOutlet weak var tableView: UITableView!
     let reuseIdentifier = "listItem"
     var list = List()
+    var isNewList = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +24,13 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
         
         let addItemView = UIView(frame: CGRect(x: 0,
                                                y: 0,
-                                               width: tableView.frame.width,
+                                               width: view.frame.width,
                                                height: 40))
         let addItemButton = UIButton(frame: CGRect(x: 16,
                                                    y: 0,
                                                    width: (addItemView.frame.width/2),
                                                    height: addItemView.frame.height))
-        let updateButton = UIButton(frame: CGRect(x: tableView.frame.width - (addItemView.frame.width/2) + 32,
+        let updateButton = UIButton(frame: CGRect(x: view.frame.width - (addItemView.frame.width/2) - 16,
                                                   y: 0,
                                                   width: (addItemView.frame.width/2),
                                                   height: addItemView.frame.height))
@@ -40,7 +41,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
         addItemButton.titleLabel!.font = UIFont.boldSystemFont(ofSize: 15.0)
         addItemButton.addTarget(self, action: #selector(addItem), for: .touchUpInside)
         addItemView.addSubview(addItemButton)
-        updateButton.setTitle("Update List", for: .normal)
+        updateButton.setTitle("Send List", for: .normal)
         updateButton.setTitleColor(.gray, for: .normal)
         updateButton.setTitleColor(.darkGray, for: .selected)
         updateButton.contentHorizontalAlignment = .right
@@ -73,6 +74,12 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
             cell.textField.addTarget(self, action: #selector(expandView), for: .editingDidBegin)
             cell.textField.addTarget(self, action: #selector(updateText(_:)), for: .editingChanged)
             cell.textField.tag = indexPath.row
+            if listItems[indexPath.row].isComplete {
+                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: cell.textField.text!)
+                attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+                cell.textField.attributedText = attributeString
+                cell.textField.textColor = .gray
+            }
         }
         return cell
     }
@@ -100,6 +107,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
     }
     
     @objc func addItem() {
+        requestPresentationStyle(.expanded)
         if var listItems = list.listItems {
             let newItem = ListItem.init(text: "", isComplete: false, lastEdit: activeConversation?.localParticipantIdentifier)
             listItems.append(newItem)
@@ -112,25 +120,48 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
     }
     
     @objc func sendItems() {
-        requestPresentationStyle(.compact)
         guard let conversation = activeConversation else { fatalError("Expected a conversation") }
-        
-        let message = composeMessage(with: list, caption: "list", session: conversation.selectedMessage?.session)
-        conversation.insert(message) { error in
-            if let error = error {
-                print(error)
+        var title = isNewList ? "New List" : "Updated List"
+        if isNewList {
+            let alert = UIAlertController.init(title: "Give this list a name?", message: "", preferredStyle: .alert)
+            alert.addTextField { textField in
+                textField.placeholder = "List Name"
+            }
+            let confirmAction = UIAlertAction(title: "Okay", style: .default) { [weak alert] _ in
+                guard let alert = alert, let textField = alert.textFields?.first else { return }
+                title = textField.text ?? "New List"
+                self.requestPresentationStyle(.compact)
+                let message = self.composeMessage(with: self.list, caption: "From $\(conversation.localParticipantIdentifier.uuidString)", session: conversation.selectedMessage?.session, title: title)
+                conversation.insert(message) { error in
+                    if let error = error {
+                        print(error)
+                    }
+                }
+            }
+            alert.addAction(confirmAction)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            present(alert, animated: true)
+        } else {
+            requestPresentationStyle(.compact)
+            let message = composeMessage(with: list, caption: "From $\(conversation.localParticipantIdentifier.uuidString)", session: conversation.selectedMessage?.session, title: title)
+            conversation.insert(message) { error in
+                if let error = error {
+                    print(error)
+                }
             }
         }
+        
     }
     
-    fileprivate func composeMessage(with list: List, caption: String, session: MSSession? = nil) -> MSMessage {
+    fileprivate func composeMessage(with list: List, caption: String, session: MSSession? = nil, title: String) -> MSMessage {
         var components = URLComponents()
         components.queryItems = list.queryItems
         
         let layout = MSMessageTemplateLayout()
         layout.image = #imageLiteral(resourceName: "placeholder")
+        layout.imageTitle = title
         layout.caption = caption
-        
         let message = MSMessage(session: session ?? MSSession())
         message.url = components.url!
         message.layout = layout
@@ -161,6 +192,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
             list = currentList
             tableView.reloadData()
         } else {
+            isNewList = true
             list = List()
         }
     }
@@ -196,26 +228,14 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
         // Called before the extension transitions to a new presentation style.
     
         // Use this method to prepare for the change in presentation style.
+        if presentationStyle == .compact {
+            view.endEditing(true)
+        }
     }
     
     override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         // Called after the extension transitions to a new presentation style.
-    
         // Use this method to finalize any behaviors associated with the change in presentation style.
     }
 
-}
-
-extension UIView {
-    var firstResponder: UIView? {
-        guard !isFirstResponder else { return self }
-        
-        for subview in subviews {
-            if let firstResponder = subview.firstResponder {
-                return firstResponder
-            }
-        }
-        
-        return nil
-    }
 }
