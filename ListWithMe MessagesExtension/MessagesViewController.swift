@@ -15,6 +15,8 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
     let reuseIdentifier = "listItem"
     var list = List()
     var isNewList = false
+    var currentCell: ListItemCell!
+    var listName = "List"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +51,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
         updateButton.addTarget(self, action: #selector(sendItems), for: .touchUpInside)
         addItemView.addSubview(updateButton)
         tableView.tableHeaderView =  addItemView
+        tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:))))
     }
     
     // MARK: - Table View Data Source
@@ -70,7 +73,8 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
         let cell =  (tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ListItemCell)
         if let listItems = list.listItems {
             cell.textField.text = listItems[indexPath.row].text
-            cell.textField.addTarget(self, action: #selector(dismissKeyboard), for: .editingDidEndOnExit)
+            cell.textField.textColor = .black
+            cell.textField.addTarget(self, action: #selector(addItem), for: .editingDidEndOnExit)
             cell.textField.addTarget(self, action: #selector(expandView), for: .editingDidBegin)
             cell.textField.addTarget(self, action: #selector(updateText(_:)), for: .editingChanged)
             cell.textField.tag = indexPath.row
@@ -79,6 +83,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
                 attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
                 cell.textField.attributedText = attributeString
                 cell.textField.textColor = .gray
+                cell.accessoryType = .checkmark
             }
         }
         return cell
@@ -91,6 +96,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
             cell.textField.attributedText = attributeString
             cell.textField.textColor = .gray
+            cell.accessoryType = .checkmark
             self.list.listItems![indexPath.row].isComplete = true
             self.list.listItems![indexPath.row].lastEdit = self.activeConversation?.localParticipantIdentifier
             success(true)
@@ -116,12 +122,15 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
             let newItem = ListItem.init(text: "", isComplete: false, lastEdit: activeConversation?.localParticipantIdentifier)
             list.listItems = [newItem]
         }
-        tableView.reloadData()
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath(row: list.listItems!.count-1, section: 0)], with: .automatic)
+        tableView.endUpdates()
+        let cell = tableView.cellForRow(at: IndexPath(row: list.listItems!.count-1, section: 0)) as! ListItemCell
+        cell.textField.becomeFirstResponder()
     }
     
     @objc func sendItems() {
         guard let conversation = activeConversation else { fatalError("Expected a conversation") }
-        var title = isNewList ? "New List" : "Updated List"
         if isNewList {
             let alert = UIAlertController.init(title: "Give this list a name?", message: "", preferredStyle: .alert)
             alert.addTextField { textField in
@@ -129,9 +138,9 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
             }
             let confirmAction = UIAlertAction(title: "Okay", style: .default) { [weak alert] _ in
                 guard let alert = alert, let textField = alert.textFields?.first else { return }
-                title = textField.text ?? "New List"
+                self.listName = textField.text ?? "List"
                 self.requestPresentationStyle(.compact)
-                let message = self.composeMessage(with: self.list, caption: "From $\(conversation.localParticipantIdentifier.uuidString)", session: conversation.selectedMessage?.session, title: title)
+                let message = self.composeMessage(with: self.list, caption: "From $\(conversation.localParticipantIdentifier.uuidString)", session: conversation.selectedMessage?.session, title: self.listName)
                 conversation.insert(message) { error in
                     if let error = error {
                         print(error)
@@ -144,7 +153,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
             present(alert, animated: true)
         } else {
             requestPresentationStyle(.compact)
-            let message = composeMessage(with: list, caption: "From $\(conversation.localParticipantIdentifier.uuidString)", session: conversation.selectedMessage?.session, title: title)
+            let message = composeMessage(with: list, caption: "From $\(conversation.localParticipantIdentifier.uuidString)", session: conversation.selectedMessage?.session, title: listName)
             conversation.insert(message) { error in
                 if let error = error {
                     print(error)
@@ -171,13 +180,11 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
     
     // Mark: - UITextField Delegate
     
-    @objc func dismissKeyboard(_ sender:UITextField) {
-        sender.resignFirstResponder()
-        list.listItems?[sender.tag].text = sender.text
-        list.listItems?[sender.tag].lastEdit = activeConversation?.localParticipantIdentifier
+    @objc func dismissKeyboard(_ sender: UITextField) {
+        self.tableView.endEditing(true)
     }
     
-    @objc func updateText(_ sender:UITextField) {
+    @objc func updateText(_ sender: UITextField) {
         list.listItems?[sender.tag].text = sender.text
         list.listItems?[sender.tag].lastEdit = activeConversation?.localParticipantIdentifier
     }
@@ -191,6 +198,8 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
         if let currentList = List(message: conversation.selectedMessage) {
             list = currentList
             tableView.reloadData()
+            let layout = conversation.selectedMessage?.layout as! MSMessageTemplateLayout
+            listName = layout.imageTitle!
         } else {
             isNewList = true
             list = List()
