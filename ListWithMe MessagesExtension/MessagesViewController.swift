@@ -17,6 +17,8 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
     var isNewList = false
     var currentCell: ListItemCell!
     var listName = "List"
+    var updateKeyboardSize = false
+    var keyboardSize:CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +54,7 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
         addItemView.addSubview(updateButton)
         tableView.tableHeaderView =  addItemView
         tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard(_:))))
+        tableView.setupAutoAdjust()
     }
     
     // MARK: - Table View Data Source
@@ -116,17 +119,23 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
         requestPresentationStyle(.expanded)
         if var listItems = list.listItems {
             let newItem = ListItem.init(text: "", isComplete: false, lastEdit: activeConversation?.localParticipantIdentifier)
-            listItems.append(newItem)
+            listItems.insert(newItem, at: 0)
             list.listItems = listItems
         } else {
             let newItem = ListItem.init(text: "", isComplete: false, lastEdit: activeConversation?.localParticipantIdentifier)
             list.listItems = [newItem]
         }
-        tableView.beginUpdates()
-        tableView.insertRows(at: [IndexPath(row: list.listItems!.count-1, section: 0)], with: .automatic)
-        tableView.endUpdates()
-        let cell = tableView.cellForRow(at: IndexPath(row: list.listItems!.count-1, section: 0)) as! ListItemCell
-        cell.textField.becomeFirstResponder()
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.performBatchUpdates({
+            tableView.insertRows(at: [indexPath], with: .automatic)
+            self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+        }) { (success) in
+            self.tableView.layoutIfNeeded()
+            if let cell = self.tableView.cellForRow(at: indexPath) as? ListItemCell {
+            cell.textField.becomeFirstResponder()
+            }
+            
+        }
     }
     
     @objc func sendItems() {
@@ -193,6 +202,15 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
         requestPresentationStyle(.expanded)
     }
     
+    // Mark: - Keyboard Notifications
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            keyboardSize = keyboardRectangle.height
+        }
+    }
+    
     // MARK: - Conversation Handling
     override func didBecomeActive(with conversation: MSConversation) {
         if let currentList = List(message: conversation.selectedMessage) {
@@ -247,4 +265,32 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
         // Use this method to finalize any behaviors associated with the change in presentation style.
     }
 
+}
+
+extension UITableView {
+    // I am working on a way to deinit the observers when the tableview also is deiniting.
+    // If you have ideas, feel free to help out!
+    func setupAutoAdjust()
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardshown), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardhide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    @objc func keyboardshown(_ notification:Notification)
+    {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.fitContentInset(inset: UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0))
+        }
+    }
+    @objc func keyboardhide(_ notification:Notification)
+    {
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            self.fitContentInset(inset: .zero)
+        }
+        
+    }
+    func fitContentInset(inset:UIEdgeInsets!)
+    {
+        self.contentInset = inset
+        self.scrollIndicatorInsets = inset
+    }
 }
