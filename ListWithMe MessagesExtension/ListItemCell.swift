@@ -16,6 +16,7 @@ class ListItemCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         mainView.layer.cornerRadius = 10.0
+        textField.autocapitalizationType = .sentences
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
