@@ -125,10 +125,13 @@ class MessagesViewController: MSMessagesAppViewController, UITableViewDelegate, 
             let newItem = ListItem.init(text: "", isComplete: false, lastEdit: activeConversation?.localParticipantIdentifier)
             list.listItems = [newItem]
         }
+        
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.performBatchUpdates({
             tableView.insertRows(at: [indexPath], with: .automatic)
-            self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+            if list.listItems?.count ?? 0 > 1 {
+                self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+            }
         }) { (success) in
             self.tableView.layoutIfNeeded()
             if let cell = self.tableView.cellForRow(at: indexPath) as? ListItemCell {
