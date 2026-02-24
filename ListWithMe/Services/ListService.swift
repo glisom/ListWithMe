@@ -164,6 +164,17 @@ final class ListService {
                 }
                 return cat0 < cat1
             }
+        case .byPriority:
+            return items.sorted { $0.priority.rawValue > $1.priority.rawValue }
+        case .byDueDate:
+            return items.sorted {
+                switch ($0.dueDate, $1.dueDate) {
+                case (nil, nil): return $0.sortOrder < $1.sortOrder
+                case (nil, _): return false
+                case (_, nil): return true
+                case (let d0?, let d1?): return d0 < d1
+                }
+            }
         }
     }
 

@@ -7,7 +7,11 @@ extension CDListItem {
             text: text ?? "",
             isComplete: isComplete,
             createdBy: createdBy ?? "",
-            category: category
+            category: category,
+            quantity: Int(quantity),
+            note: note,
+            dueDate: dueDate,
+            priority: Priority(rawValue: Int(priority)) ?? .none
         )
         item.completedAt = completedAt
         item.completedBy = completedBy
@@ -27,6 +31,10 @@ extension CDListItem {
         self.modifiedAt = item.modifiedAt
         self.sortOrder = Int32(item.sortOrder)
         self.category = item.category
+        self.quantity = Int32(item.quantity)
+        self.note = item.note
+        self.dueDate = item.dueDate
+        self.priority = Int16(item.priority.rawValue)
     }
 
     static func create(from item: ListItem, list: CDList, context: NSManagedObjectContext) -> CDListItem {
@@ -42,6 +50,10 @@ extension CDListItem {
         cdItem.modifiedAt = item.modifiedAt
         cdItem.sortOrder = Int32(item.sortOrder)
         cdItem.category = item.category
+        cdItem.quantity = Int32(item.quantity)
+        cdItem.note = item.note
+        cdItem.dueDate = item.dueDate
+        cdItem.priority = Int16(item.priority.rawValue)
         cdItem.list = list
         return cdItem
     }

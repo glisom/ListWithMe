@@ -30,13 +30,21 @@ struct ListItem: Identifiable, Hashable {
     var modifiedAt: Date
     var sortOrder: Int
     var category: String?
+    var quantity: Int
+    var note: String?
+    var dueDate: Date?
+    var priority: Priority
 
     init(
         id: UUID = UUID(),
         text: String = "",
         isComplete: Bool = false,
         createdBy: String = "",
-        category: String? = nil
+        category: String? = nil,
+        quantity: Int = 1,
+        note: String? = nil,
+        dueDate: Date? = nil,
+        priority: Priority = .none
     ) {
         self.id = id
         self.text = text
@@ -47,6 +55,10 @@ struct ListItem: Identifiable, Hashable {
         self.modifiedAt = Date()
         self.sortOrder = 0
         self.category = category
+        self.quantity = quantity
+        self.note = note
+        self.dueDate = dueDate
+        self.priority = priority
     }
 
     mutating func markComplete(by userId: String) {
@@ -102,6 +114,33 @@ struct Activity: Identifiable {
     }
 }
 
+enum Priority: Int, CaseIterable, Identifiable, Codable {
+    case none = 0
+    case low = 1
+    case medium = 2
+    case high = 3
+
+    var id: Int { rawValue }
+
+    var label: String {
+        switch self {
+        case .none: return "None"
+        case .low: return "Low"
+        case .medium: return "Medium"
+        case .high: return "High"
+        }
+    }
+
+    var icon: String {
+        switch self {
+        case .none: return "minus"
+        case .low: return "exclamationmark"
+        case .medium: return "exclamationmark.2"
+        case .high: return "exclamationmark.3"
+        }
+    }
+}
+
 enum SortOption: String, CaseIterable, Identifiable {
     case manual = "Manual"
     case alphabetical = "A-Z"
@@ -111,6 +150,8 @@ enum SortOption: String, CaseIterable, Identifiable {
     case incompleteFirst = "Incomplete First"
     case completeFirst = "Complete First"
     case byCategory = "By Category"
+    case byPriority = "By Priority"
+    case byDueDate = "By Due Date"
 
     var id: String { rawValue }
 
@@ -124,6 +165,8 @@ enum SortOption: String, CaseIterable, Identifiable {
         case .incompleteFirst: return "circle"
         case .completeFirst: return "checkmark.circle"
         case .byCategory: return "folder"
+        case .byPriority: return "exclamationmark.triangle"
+        case .byDueDate: return "calendar"
         }
     }
 }
