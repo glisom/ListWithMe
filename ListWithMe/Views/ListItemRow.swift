@@ -33,14 +33,25 @@ struct ListItemRow: View {
             .buttonStyle(.plain)
 
             VStack(alignment: .leading, spacing: 2) {
-                TextField("Item", text: $text)
-                    .strikethrough(item.isComplete)
-                    .foregroundStyle(item.isComplete ? .secondary : .primary)
-                    .focused($isFocused)
-                    .onChange(of: text) { _, newValue in
-                        onTextChange(newValue)
+                HStack {
+                    TextField("Item", text: $text)
+                        .strikethrough(item.isComplete)
+                        .foregroundStyle(item.isComplete ? .secondary : .primary)
+                        .focused($isFocused)
+                        .onChange(of: text) { _, newValue in
+                            onTextChange(newValue)
+                        }
+                        .submitLabel(.done)
+
+                    if let category = item.category, !category.isEmpty {
+                        Text(category)
+                            .font(.caption2)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color.secondary.opacity(0.2))
+                            .clipShape(Capsule())
                     }
-                    .submitLabel(.done)
+                }
 
                 if !item.modifiedBy.isEmpty {
                     Text(modifiedByLabel)
@@ -76,7 +87,7 @@ struct ListItemRow: View {
 #Preview {
     List {
         ListItemRow(
-            item: ListItem(text: "Milk", createdBy: "user1"),
+            item: ListItem(text: "Milk", createdBy: "user1", category: "Dairy"),
             onToggleComplete: {},
             onTextChange: { _ in },
             onDelete: {}
