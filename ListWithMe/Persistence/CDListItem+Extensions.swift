@@ -6,7 +6,8 @@ extension CDListItem {
             id: id ?? UUID(),
             text: text ?? "",
             isComplete: isComplete,
-            createdBy: createdBy ?? ""
+            createdBy: createdBy ?? "",
+            category: category
         )
         item.completedAt = completedAt
         item.completedBy = completedBy
@@ -25,6 +26,7 @@ extension CDListItem {
         self.modifiedBy = item.modifiedBy
         self.modifiedAt = item.modifiedAt
         self.sortOrder = Int32(item.sortOrder)
+        self.category = item.category
     }
 
     static func create(from item: ListItem, list: CDList, context: NSManagedObjectContext) -> CDListItem {
@@ -39,6 +41,7 @@ extension CDListItem {
         cdItem.modifiedBy = item.modifiedBy
         cdItem.modifiedAt = item.modifiedAt
         cdItem.sortOrder = Int32(item.sortOrder)
+        cdItem.category = item.category
         cdItem.list = list
         return cdItem
     }

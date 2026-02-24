@@ -29,12 +29,14 @@ struct ListItem: Identifiable, Hashable {
     var modifiedBy: String
     var modifiedAt: Date
     var sortOrder: Int
+    var category: String?
 
     init(
         id: UUID = UUID(),
         text: String = "",
         isComplete: Bool = false,
-        createdBy: String = ""
+        createdBy: String = "",
+        category: String? = nil
     ) {
         self.id = id
         self.text = text
@@ -44,6 +46,7 @@ struct ListItem: Identifiable, Hashable {
         self.modifiedBy = createdBy
         self.modifiedAt = Date()
         self.sortOrder = 0
+        self.category = category
     }
 
     mutating func markComplete(by userId: String) {
@@ -96,6 +99,32 @@ struct Activity: Identifiable {
         self.action = action
         self.itemText = itemText
         self.timestamp = timestamp
+    }
+}
+
+enum SortOption: String, CaseIterable, Identifiable {
+    case manual = "Manual"
+    case alphabetical = "A-Z"
+    case alphabeticalReversed = "Z-A"
+    case newestFirst = "Newest First"
+    case oldestFirst = "Oldest First"
+    case incompleteFirst = "Incomplete First"
+    case completeFirst = "Complete First"
+    case byCategory = "By Category"
+
+    var id: String { rawValue }
+
+    var icon: String {
+        switch self {
+        case .manual: return "hand.draw"
+        case .alphabetical: return "textformat.abc"
+        case .alphabeticalReversed: return "textformat.abc"
+        case .newestFirst: return "clock"
+        case .oldestFirst: return "clock.arrow.circlepath"
+        case .incompleteFirst: return "circle"
+        case .completeFirst: return "checkmark.circle"
+        case .byCategory: return "folder"
+        }
     }
 }
 
