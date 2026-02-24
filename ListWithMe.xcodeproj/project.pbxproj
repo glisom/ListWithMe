@@ -7,18 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B3D08E42F4DEF0000ABF7A6 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08E32F4DEF0000ABF7A6 /* SuggestionsView.swift */; };
-		7B3D08E22F4DEE0000ABF7A6 /* SuggestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08E12F4DEE0000ABF7A6 /* SuggestionService.swift */; };
-		7B3D08DF2F4DED0000ABF7A6 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08E02F4DED0000ABF7A6 /* ItemDetailView.swift */; };
-		7B3D08DD2F4DEC0000ABF7A6 /* SortMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08DE2F4DEC0000ABF7A6 /* SortMenuView.swift */; };
-		7B3D08DB2F4DEB0000ABF7A6 /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08DC2F4DEB0000ABF7A6 /* CategoryPickerView.swift */; };
-		7B3D08DA2F4DEA0000ABF7A6 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D92F4DEA0000ABF7A6 /* NotificationService.swift */; };
-		7B3D08D72F4DE90000ABF7A6 /* CollaborationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D82F4DE90000ABF7A6 /* CollaborationService.swift */; };
-		7B3D08CE2F4DE50000ABF7A6 /* ListWithMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B32F4DDAE500ABF7A6 /* ListWithMe.xcdatamodeld */; };
-		7B3D08CF2F4DE50000ABF7A6 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D02F4DE50000ABF7A6 /* MessagesView.swift */; };
-		7B3D08D32F4DE70000ABF7A6 /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D42F4DE70000ABF7A6 /* ActivityFeedView.swift */; };
-		7B3D08D52F4DE80000ABF7A6 /* ParticipantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D62F4DE80000ABF7A6 /* ParticipantsView.swift */; };
-		7B3D08D22F4DE60000ABF7A6 /* CDActivity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D12F4DE60000ABF7A6 /* CDActivity+Extensions.swift */; };
 		7B3D08C22F4DE19800ABF7A6 /* CDListItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B82F4DE19800ABF7A6 /* CDListItem+Extensions.swift */; };
 		7B3D08C32F4DE19800ABF7A6 /* NewListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08C02F4DE19800ABF7A6 /* NewListSheet.swift */; };
 		7B3D08C42F4DE19800ABF7A6 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08BF2F4DE19800ABF7A6 /* ListsView.swift */; };
@@ -28,6 +16,18 @@
 		7B3D08C82F4DE19800ABF7A6 /* ListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B52F4DE19800ABF7A6 /* ListModels.swift */; };
 		7B3D08C92F4DE19800ABF7A6 /* CDList+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B72F4DE19800ABF7A6 /* CDList+Extensions.swift */; };
 		7B3D08CA2F4DE19800ABF7A6 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B92F4DE19800ABF7A6 /* PersistenceController.swift */; };
+		7B3D08CE2F4DE50000ABF7A6 /* ListWithMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B32F4DDAE500ABF7A6 /* ListWithMe.xcdatamodeld */; };
+		7B3D08CF2F4DE50000ABF7A6 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D02F4DE50000ABF7A6 /* MessagesView.swift */; };
+		7B3D08D22F4DE60000ABF7A6 /* CDActivity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D12F4DE60000ABF7A6 /* CDActivity+Extensions.swift */; };
+		7B3D08D32F4DE70000ABF7A6 /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D42F4DE70000ABF7A6 /* ActivityFeedView.swift */; };
+		7B3D08D52F4DE80000ABF7A6 /* ParticipantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D62F4DE80000ABF7A6 /* ParticipantsView.swift */; };
+		7B3D08D72F4DE90000ABF7A6 /* CollaborationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D82F4DE90000ABF7A6 /* CollaborationService.swift */; };
+		7B3D08DA2F4DEA0000ABF7A6 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D92F4DEA0000ABF7A6 /* NotificationService.swift */; };
+		7B3D08DB2F4DEB0000ABF7A6 /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08DC2F4DEB0000ABF7A6 /* CategoryPickerView.swift */; };
+		7B3D08DD2F4DEC0000ABF7A6 /* SortMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08DE2F4DEC0000ABF7A6 /* SortMenuView.swift */; };
+		7B3D08DF2F4DED0000ABF7A6 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08E02F4DED0000ABF7A6 /* ItemDetailView.swift */; };
+		7B3D08E22F4DEE0000ABF7A6 /* SuggestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08E12F4DEE0000ABF7A6 /* SuggestionService.swift */; };
+		7B3D08E42F4DEF0000ABF7A6 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08E32F4DEF0000ABF7A6 /* SuggestionsView.swift */; };
 		D4D800FF21BAD65A00BC6506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4D800FE21BAD65A00BC6506 /* Assets.xcassets */; };
 		D4D8010621BAD65A00BC6506 /* ListWithMe MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D4D8010521BAD65A00BC6506 /* ListWithMe MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D4D8010B21BAD65A00BC6506 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D8010A21BAD65A00BC6506 /* Messages.framework */; };
@@ -60,21 +60,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7B3D08E32F4DEF0000ABF7A6 /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
-		7B3D08E12F4DEE0000ABF7A6 /* SuggestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionService.swift; sourceTree = "<group>"; };
-		7B3D08E02F4DED0000ABF7A6 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
-		7B3D08DE2F4DEC0000ABF7A6 /* SortMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMenuView.swift; sourceTree = "<group>"; };
-		7B3D08DC2F4DEB0000ABF7A6 /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
 		7B3D08B22F4DDA4900ABF7A6 /* ListWithMe MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ListWithMe MessagesExtension.entitlements"; sourceTree = "<group>"; };
 		7B3D08B42F4DDAE500ABF7A6 /* ListWithMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ListWithMe.xcdatamodel; sourceTree = "<group>"; };
 		7B3D08B52F4DE19800ABF7A6 /* ListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModels.swift; sourceTree = "<group>"; };
 		7B3D08B72F4DE19800ABF7A6 /* CDList+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDList+Extensions.swift"; sourceTree = "<group>"; };
 		7B3D08B82F4DE19800ABF7A6 /* CDListItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDListItem+Extensions.swift"; sourceTree = "<group>"; };
-		7B3D08D12F4DE60000ABF7A6 /* CDActivity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDActivity+Extensions.swift"; sourceTree = "<group>"; };
-		7B3D08D42F4DE70000ABF7A6 /* ActivityFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedView.swift; sourceTree = "<group>"; };
-		7B3D08D62F4DE80000ABF7A6 /* ParticipantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsView.swift; sourceTree = "<group>"; };
-		7B3D08D82F4DE90000ABF7A6 /* CollaborationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaborationService.swift; sourceTree = "<group>"; };
-		7B3D08D92F4DEA0000ABF7A6 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		7B3D08B92F4DE19800ABF7A6 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		7B3D08BB2F4DE19800ABF7A6 /* ListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
 		7B3D08BD2F4DE19800ABF7A6 /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
@@ -84,13 +74,23 @@
 		7B3D08CB2F4DE1A700ABF7A6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7B3D08CC2F4DE1A700ABF7A6 /* ListWithMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWithMeApp.swift; sourceTree = "<group>"; };
 		7B3D08CD2F4DE1AF00ABF7A6 /* ListWithMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ListWithMe-Bridging-Header.h"; sourceTree = "<group>"; };
+		7B3D08D02F4DE50000ABF7A6 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
+		7B3D08D12F4DE60000ABF7A6 /* CDActivity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDActivity+Extensions.swift"; sourceTree = "<group>"; };
+		7B3D08D42F4DE70000ABF7A6 /* ActivityFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedView.swift; sourceTree = "<group>"; };
+		7B3D08D62F4DE80000ABF7A6 /* ParticipantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsView.swift; sourceTree = "<group>"; };
+		7B3D08D82F4DE90000ABF7A6 /* CollaborationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaborationService.swift; sourceTree = "<group>"; };
+		7B3D08D92F4DEA0000ABF7A6 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		7B3D08DC2F4DEB0000ABF7A6 /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
+		7B3D08DE2F4DEC0000ABF7A6 /* SortMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMenuView.swift; sourceTree = "<group>"; };
+		7B3D08E02F4DED0000ABF7A6 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
+		7B3D08E12F4DEE0000ABF7A6 /* SuggestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionService.swift; sourceTree = "<group>"; };
+		7B3D08E32F4DEF0000ABF7A6 /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
 		D4D800FB21BAD65700BC6506 /* ListWithMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListWithMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4D800FE21BAD65A00BC6506 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4D8010021BAD65A00BC6506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4D8010521BAD65A00BC6506 /* ListWithMe MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ListWithMe MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4D8010A21BAD65A00BC6506 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		D4D8010D21BAD65A00BC6506 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
-		7B3D08D02F4DE50000ABF7A6 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		D4D8011221BAD65B00BC6506 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4D8011421BAD65B00BC6506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -470,15 +470,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_ENTITLEMENTS = "ListWithMe MessagesExtension/ListWithMe MessagesExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3D247B7547;
 				INFOPLIST_FILE = "ListWithMe MessagesExtension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = ListWithMe;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.isom.ListWithMe.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -493,15 +495,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_ENTITLEMENTS = "ListWithMe MessagesExtension/ListWithMe MessagesExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3D247B7547;
 				INFOPLIST_FILE = "ListWithMe MessagesExtension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = ListWithMe;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.isom.ListWithMe.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -517,10 +521,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3D247B7547;
 				INFOPLIST_FILE = ListWithMe/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ListWithMe;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.isom.ListWithMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ListWithMe/ListWithMe-Bridging-Header.h";
@@ -537,10 +543,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3D247B7547;
 				INFOPLIST_FILE = ListWithMe/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ListWithMe;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.isom.ListWithMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ListWithMe/ListWithMe-Bridging-Header.h";
