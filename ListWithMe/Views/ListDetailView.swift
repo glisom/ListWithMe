@@ -63,6 +63,22 @@ struct ListDetailView: View {
         suggestionService.suggestions(for: newItemText)
     }
 
+    private var clipboardHasText: Bool {
+        UIPasteboard.general.hasStrings
+    }
+
+    private func addFromClipboard() {
+        guard let text = UIPasteboard.general.string else { return }
+        let lines = text.components(separatedBy: .newlines)
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .filter { !$0.isEmpty }
+
+        for line in lines {
+            listService.addItem(to: listId, text: line, createdBy: userId)
+        }
+        suggestionService.loadRecentItems()
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             if let list = list {
@@ -236,6 +252,14 @@ struct ListDetailView: View {
             SortMenuView(selectedOption: $sortOption)
 
             Menu {
+                if clipboardHasText {
+                    Button {
+                        addFromClipboard()
+                    } label: {
+                        Label("Paste Items", systemImage: "doc.on.clipboard")
+                    }
+                }
+
                 Button {
                     isSelectionMode.toggle()
                     if !isSelectionMode { selectedItems.removeAll() }
