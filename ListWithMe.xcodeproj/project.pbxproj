@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B3D08D72F4DE90000ABF7A6 /* CollaborationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D82F4DE90000ABF7A6 /* CollaborationService.swift */; };
 		7B3D08CE2F4DE50000ABF7A6 /* ListWithMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B32F4DDAE500ABF7A6 /* ListWithMe.xcdatamodeld */; };
 		7B3D08CF2F4DE50000ABF7A6 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D02F4DE50000ABF7A6 /* MessagesView.swift */; };
 		7B3D08D32F4DE70000ABF7A6 /* ActivityFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D42F4DE70000ABF7A6 /* ActivityFeedView.swift */; };
+		7B3D08D52F4DE80000ABF7A6 /* ParticipantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D62F4DE80000ABF7A6 /* ParticipantsView.swift */; };
 		7B3D08D22F4DE60000ABF7A6 /* CDActivity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D12F4DE60000ABF7A6 /* CDActivity+Extensions.swift */; };
 		7B3D08C22F4DE19800ABF7A6 /* CDListItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B82F4DE19800ABF7A6 /* CDListItem+Extensions.swift */; };
 		7B3D08C32F4DE19800ABF7A6 /* NewListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08C02F4DE19800ABF7A6 /* NewListSheet.swift */; };
@@ -59,6 +61,7 @@
 		7B3D08B82F4DE19800ABF7A6 /* CDListItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDListItem+Extensions.swift"; sourceTree = "<group>"; };
 		7B3D08D12F4DE60000ABF7A6 /* CDActivity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDActivity+Extensions.swift"; sourceTree = "<group>"; };
 		7B3D08D42F4DE70000ABF7A6 /* ActivityFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedView.swift; sourceTree = "<group>"; };
+		7B3D08D62F4DE80000ABF7A6 /* ParticipantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsView.swift; sourceTree = "<group>"; };
 		7B3D08B92F4DE19800ABF7A6 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		7B3D08BB2F4DE19800ABF7A6 /* ListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
 		7B3D08BD2F4DE19800ABF7A6 /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 				7B3D08BE2F4DE19800ABF7A6 /* ListItemRow.swift */,
 				7B3D08BF2F4DE19800ABF7A6 /* ListsView.swift */,
 				7B3D08C02F4DE19800ABF7A6 /* NewListSheet.swift */,
+				7B3D08D62F4DE80000ABF7A6 /* ParticipantsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,6 +293,7 @@
 				7B3D08CE2F4DE50000ABF7A6 /* ListWithMe.xcdatamodeld in Sources */,
 				7B3D08D22F4DE60000ABF7A6 /* CDActivity+Extensions.swift in Sources */,
 				7B3D08D32F4DE70000ABF7A6 /* ActivityFeedView.swift in Sources */,
+				7B3D08D52F4DE80000ABF7A6 /* ParticipantsView.swift in Sources */,
 				7B3D08C22F4DE19800ABF7A6 /* CDListItem+Extensions.swift in Sources */,
 				7B3D08C32F4DE19800ABF7A6 /* NewListSheet.swift in Sources */,
 				7B3D08C42F4DE19800ABF7A6 /* ListsView.swift in Sources */,
