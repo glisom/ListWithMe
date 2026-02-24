@@ -13,6 +13,7 @@ struct ListDetailView: View {
     @State private var editingItemCategory: ListItem? = nil
     @State private var editingItemDetails: ListItem? = nil
     @State private var suggestionService = SuggestionService()
+    @State private var searchText = ""
     @FocusState private var isAddingItem: Bool
 
     init(
@@ -45,6 +46,17 @@ struct ListDetailView: View {
         }
     }
 
+    private var filteredGroupedItems: [(String?, [ListItem])] {
+        if searchText.isEmpty {
+            return groupedItems
+        }
+        let lowercasedSearch = searchText.lowercased()
+        return groupedItems.compactMap { category, items in
+            let filtered = items.filter { $0.text.lowercased().contains(lowercasedSearch) }
+            return filtered.isEmpty ? nil : (category, filtered)
+        }
+    }
+
     private var currentSuggestions: [String] {
         suggestionService.suggestions(for: newItemText)
     }
@@ -57,7 +69,7 @@ struct ListDetailView: View {
 
                 // Items List
                 List {
-                    ForEach(groupedItems, id: \.0) { category, items in
+                    ForEach(filteredGroupedItems, id: \.0) { category, items in
                         Section {
                             ForEach(items) { item in
                                 ListItemRow(
@@ -119,6 +131,7 @@ struct ListDetailView: View {
                     addItemRow
                 }
                 .listStyle(.plain)
+                .searchable(text: $searchText, prompt: "Search items")
                 .environment(\.editMode, sortOption == .manual ? .constant(.active) : .constant(.inactive))
 
                 // Send button
