@@ -88,6 +88,24 @@ final class ListService {
         fetchLists()
     }
 
+    func clearCompleted(from listId: UUID) {
+        guard let cdList = CDList.fetch(id: listId, context: context) else { return }
+
+        let completedItems = (cdList.items as? Set<CDListItem> ?? [])
+            .filter { $0.isComplete }
+
+        let count = completedItems.count
+        for item in completedItems {
+            context.delete(item)
+        }
+
+        saveContext()
+        fetchLists()
+        if count > 0 {
+            recordActivity(for: listId, action: .deleted, itemText: "\(count) completed items")
+        }
+    }
+
     func toggleItemComplete(_ item: ListItem, in listId: UUID, by userId: String) {
         var updatedItem = item
         if item.isComplete {

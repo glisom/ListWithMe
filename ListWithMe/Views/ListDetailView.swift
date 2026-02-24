@@ -188,6 +188,20 @@ struct ListDetailView: View {
 
             SortMenuView(selectedOption: $sortOption)
 
+            Menu {
+                Button(role: .destructive) {
+                    withAnimation {
+                        listService.clearCompleted(from: listId)
+                    }
+                } label: {
+                    Label("Clear Completed", systemImage: "checkmark.circle.badge.xmark")
+                }
+                .disabled(list.items.filter { $0.isComplete }.isEmpty)
+            } label: {
+                Image(systemName: "ellipsis.circle")
+                    .font(.title3)
+            }
+
             Button {
                 showActivitySheet = true
             } label: {
