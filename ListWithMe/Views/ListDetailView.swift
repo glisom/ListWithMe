@@ -4,6 +4,7 @@ struct ListDetailView: View {
     let listId: UUID
     let userId: String
     let onSendList: (ShoppingList) -> Void
+    let onBack: (() -> Void)?
 
     @State private var listService: ListService
     @State private var collaborationService: CollaborationService
@@ -23,13 +24,15 @@ struct ListDetailView: View {
         userId: String,
         listService: ListService = ListService(),
         collaborationService: CollaborationService = CollaborationService(),
-        onSendList: @escaping (ShoppingList) -> Void
+        onSendList: @escaping (ShoppingList) -> Void,
+        onBack: (() -> Void)? = nil
     ) {
         self.listId = listId
         self.userId = userId
         self._listService = State(initialValue: listService)
         self._collaborationService = State(initialValue: collaborationService)
         self.onSendList = onSendList
+        self.onBack = onBack
     }
 
     private var list: ShoppingList? {
@@ -120,6 +123,9 @@ struct ListDetailView: View {
                                             withAnimation {
                                                 listService.deleteItem(item, from: listId)
                                             }
+                                        },
+                                        onEditDetails: {
+                                            editingItemDetails = item
                                         }
                                     )
                                 }
@@ -238,6 +244,15 @@ struct ListDetailView: View {
 
     private func headerView(for list: ShoppingList) -> some View {
         HStack {
+            if let onBack = onBack {
+                Button {
+                    onBack()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .font(.title3)
+                }
+            }
+
             Text(list.name)
                 .font(.headline)
 

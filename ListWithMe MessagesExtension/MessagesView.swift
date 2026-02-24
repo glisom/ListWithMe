@@ -83,6 +83,9 @@ struct MessagesView: View {
                     onSendList: { list in
                         let message = composeMessage(for: list)
                         onSendMessage(message)
+                    },
+                    onBack: {
+                        selectedList = nil
                     }
                 )
             } else {

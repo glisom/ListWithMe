@@ -5,6 +5,7 @@ struct ListItemRow: View {
     let onToggleComplete: () -> Void
     let onTextChange: (String) -> Void
     let onDelete: () -> Void
+    let onEditDetails: (() -> Void)?
 
     @State private var text: String
     @FocusState private var isFocused: Bool
@@ -13,12 +14,14 @@ struct ListItemRow: View {
         item: ListItem,
         onToggleComplete: @escaping () -> Void,
         onTextChange: @escaping (String) -> Void,
-        onDelete: @escaping () -> Void
+        onDelete: @escaping () -> Void,
+        onEditDetails: (() -> Void)? = nil
     ) {
         self.item = item
         self.onToggleComplete = onToggleComplete
         self.onTextChange = onTextChange
         self.onDelete = onDelete
+        self.onEditDetails = onEditDetails
         self._text = State(initialValue: item.text)
     }
 
@@ -78,6 +81,16 @@ struct ListItemRow: View {
                             .padding(.vertical, 2)
                             .background(Color.secondary.opacity(0.2))
                             .clipShape(Capsule())
+                    }
+
+                    // Edit details button
+                    if let onEditDetails = onEditDetails {
+                        Button(action: onEditDetails) {
+                            Image(systemName: "info.circle")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
 
