@@ -43,6 +43,34 @@ struct ListItemRow: View {
                         }
                         .submitLabel(.done)
 
+                    // Quantity badge
+                    if item.quantity > 1 {
+                        Text("×\(item.quantity)")
+                            .font(.caption.weight(.semibold))
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color.blue.opacity(0.2))
+                            .clipShape(Capsule())
+                    }
+
+                    // Priority indicator
+                    if item.priority != .none {
+                        Image(systemName: item.priority.icon)
+                            .font(.caption)
+                            .foregroundStyle(priorityColor)
+                    }
+
+                    // Due date indicator
+                    if let dueDate = item.dueDate {
+                        HStack(spacing: 2) {
+                            Image(systemName: "calendar")
+                            Text(dueDate, style: .date)
+                        }
+                        .font(.caption2)
+                        .foregroundStyle(dueDate < Date() ? .red : .secondary)
+                    }
+
+                    // Category badge
                     if let category = item.category, !category.isEmpty {
                         Text(category)
                             .font(.caption2)
@@ -82,19 +110,72 @@ struct ListItemRow: View {
         let shortId = String(item.modifiedBy.prefix(4))
         return "Edited by \(shortId)..."
     }
+
+    private var priorityColor: Color {
+        switch item.priority {
+        case .none: return .secondary
+        case .low: return .blue
+        case .medium: return .orange
+        case .high: return .red
+        }
+    }
 }
 
 #Preview {
     List {
+        // Basic item with category
         ListItemRow(
             item: ListItem(text: "Milk", createdBy: "user1", category: "Dairy"),
             onToggleComplete: {},
             onTextChange: { _ in },
             onDelete: {}
         )
+        // Item with quantity
+        ListItemRow(
+            item: ListItem(text: "Bananas", createdBy: "user1", category: "Produce", quantity: 6),
+            onToggleComplete: {},
+            onTextChange: { _ in },
+            onDelete: {}
+        )
+        // Item with high priority
+        ListItemRow(
+            item: ListItem(text: "Birthday cake", createdBy: "user1", priority: .high),
+            onToggleComplete: {},
+            onTextChange: { _ in },
+            onDelete: {}
+        )
+        // Item with due date (future)
+        ListItemRow(
+            item: ListItem(text: "Pick up prescription", createdBy: "user1", dueDate: Calendar.current.date(byAdding: .day, value: 2, to: Date())),
+            onToggleComplete: {},
+            onTextChange: { _ in },
+            onDelete: {}
+        )
+        // Item with overdue date
+        ListItemRow(
+            item: ListItem(text: "Return library books", createdBy: "user1", dueDate: Calendar.current.date(byAdding: .day, value: -1, to: Date())),
+            onToggleComplete: {},
+            onTextChange: { _ in },
+            onDelete: {}
+        )
+        // Item with all properties
+        ListItemRow(
+            item: ListItem(
+                text: "Party supplies",
+                createdBy: "user1",
+                category: "Party",
+                quantity: 3,
+                dueDate: Calendar.current.date(byAdding: .day, value: 5, to: Date()),
+                priority: .medium
+            ),
+            onToggleComplete: {},
+            onTextChange: { _ in },
+            onDelete: {}
+        )
+        // Completed item
         ListItemRow(
             item: {
-                var item = ListItem(text: "Eggs", createdBy: "user1")
+                var item = ListItem(text: "Eggs", createdBy: "user1", quantity: 12, priority: .low)
                 item.markComplete(by: "user2")
                 return item
             }(),
