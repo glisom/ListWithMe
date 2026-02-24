@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7B3D08CE2F4DE50000ABF7A6 /* ListWithMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B32F4DDAE500ABF7A6 /* ListWithMe.xcdatamodeld */; };
 		7B3D08CF2F4DE50000ABF7A6 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D02F4DE50000ABF7A6 /* MessagesView.swift */; };
+		7B3D08D22F4DE60000ABF7A6 /* CDActivity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D12F4DE60000ABF7A6 /* CDActivity+Extensions.swift */; };
 		7B3D08C22F4DE19800ABF7A6 /* CDListItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B82F4DE19800ABF7A6 /* CDListItem+Extensions.swift */; };
 		7B3D08C32F4DE19800ABF7A6 /* NewListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08C02F4DE19800ABF7A6 /* NewListSheet.swift */; };
 		7B3D08C42F4DE19800ABF7A6 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08BF2F4DE19800ABF7A6 /* ListsView.swift */; };
@@ -55,6 +56,7 @@
 		7B3D08B52F4DE19800ABF7A6 /* ListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModels.swift; sourceTree = "<group>"; };
 		7B3D08B72F4DE19800ABF7A6 /* CDList+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDList+Extensions.swift"; sourceTree = "<group>"; };
 		7B3D08B82F4DE19800ABF7A6 /* CDListItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDListItem+Extensions.swift"; sourceTree = "<group>"; };
+		7B3D08D12F4DE60000ABF7A6 /* CDActivity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDActivity+Extensions.swift"; sourceTree = "<group>"; };
 		7B3D08B92F4DE19800ABF7A6 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		7B3D08BB2F4DE19800ABF7A6 /* ListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
 		7B3D08BD2F4DE19800ABF7A6 /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 		7B3D08BA2F4DE19800ABF7A6 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				7B3D08D12F4DE60000ABF7A6 /* CDActivity+Extensions.swift */,
 				7B3D08B72F4DE19800ABF7A6 /* CDList+Extensions.swift */,
 				7B3D08B82F4DE19800ABF7A6 /* CDListItem+Extensions.swift */,
 				7B3D08B92F4DE19800ABF7A6 /* PersistenceController.swift */,
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B3D08CE2F4DE50000ABF7A6 /* ListWithMe.xcdatamodeld in Sources */,
+				7B3D08D22F4DE60000ABF7A6 /* CDActivity+Extensions.swift in Sources */,
 				7B3D08C22F4DE19800ABF7A6 /* CDListItem+Extensions.swift in Sources */,
 				7B3D08C32F4DE19800ABF7A6 /* NewListSheet.swift in Sources */,
 				7B3D08C42F4DE19800ABF7A6 /* ListsView.swift in Sources */,
