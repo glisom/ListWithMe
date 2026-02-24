@@ -65,11 +65,12 @@ final class ListService {
     func addItem(to listId: UUID, text: String, createdBy: String) {
         guard let cdList = CDList.fetch(id: listId, context: context) else { return }
 
-        let item = ListItem(text: text, createdBy: createdBy)
+        let parsed = parseItemInput(text)
+        let item = ListItem(text: parsed.text, createdBy: createdBy, quantity: parsed.quantity)
         _ = CDListItem.create(from: item, list: cdList, context: context)
         saveContext()
         fetchLists()
-        recordActivity(for: listId, action: .added, itemText: text)
+        recordActivity(for: listId, action: .added, itemText: parsed.text)
     }
 
     func updateItem(_ item: ListItem, in listId: UUID) {
@@ -176,6 +177,47 @@ final class ListService {
                 }
             }
         }
+    }
+
+    // MARK: - Input Parsing
+
+    struct ParsedItem {
+        let text: String
+        let quantity: Int
+    }
+
+    func parseItemInput(_ input: String) -> ParsedItem {
+        let trimmed = input.trimmingCharacters(in: .whitespaces)
+
+        // Pattern: "3 apples" or "3x apples" or "3× apples"
+        let patterns = [
+            "^(\\d+)\\s*[x×]?\\s+(.+)$",  // "3 apples" or "3x apples"
+            "^(.+)\\s+[x×](\\d+)$"         // "apples x3"
+        ]
+
+        for (index, pattern) in patterns.enumerated() {
+            if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive),
+               let match = regex.firstMatch(in: trimmed, range: NSRange(trimmed.startIndex..., in: trimmed)) {
+
+                if index == 0 {
+                    // First pattern: quantity first
+                    if let qtyRange = Range(match.range(at: 1), in: trimmed),
+                       let textRange = Range(match.range(at: 2), in: trimmed),
+                       let qty = Int(trimmed[qtyRange]) {
+                        return ParsedItem(text: String(trimmed[textRange]), quantity: min(qty, 99))
+                    }
+                } else {
+                    // Second pattern: quantity last
+                    if let textRange = Range(match.range(at: 1), in: trimmed),
+                       let qtyRange = Range(match.range(at: 2), in: trimmed),
+                       let qty = Int(trimmed[qtyRange]) {
+                        return ParsedItem(text: String(trimmed[textRange]).trimmingCharacters(in: .whitespaces), quantity: min(qty, 99))
+                    }
+                }
+            }
+        }
+
+        return ParsedItem(text: trimmed, quantity: 1)
     }
 
     // MARK: - Helpers
