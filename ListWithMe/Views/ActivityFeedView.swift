@@ -103,23 +103,23 @@ struct ActivityRow: View {
         let actionText: String
         switch activity.action {
         case .added:
-            actionText = "added"
+            actionText = "added by"
         case .completed:
-            actionText = "completed"
+            actionText = "completed by"
         case .uncompleted:
-            actionText = "uncompleted"
+            actionText = "uncompleted by"
         case .edited:
-            actionText = "edited"
+            actionText = "edited by"
         case .deleted:
-            actionText = "deleted"
+            actionText = "deleted by"
         case .joined:
             actionText = "joined"
         }
 
         if let itemText = activity.itemText {
-            return "\(activity.userName) \(actionText) \(itemText)"
+            return "\(itemText) \(actionText) \(activity.userName)"
         } else {
-            return "\(activity.userName) \(actionText)"
+            return "\(activity.userName) \(actionText.replacingOccurrences(of: " by", with: ""))"
         }
     }
 
