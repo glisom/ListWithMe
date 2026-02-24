@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B3D08E42F4DEF0000ABF7A6 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08E32F4DEF0000ABF7A6 /* SuggestionsView.swift */; };
 		7B3D08E22F4DEE0000ABF7A6 /* SuggestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08E12F4DEE0000ABF7A6 /* SuggestionService.swift */; };
 		7B3D08DF2F4DED0000ABF7A6 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08E02F4DED0000ABF7A6 /* ItemDetailView.swift */; };
 		7B3D08DD2F4DEC0000ABF7A6 /* SortMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08DE2F4DEC0000ABF7A6 /* SortMenuView.swift */; };
@@ -59,6 +60,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7B3D08E32F4DEF0000ABF7A6 /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
 		7B3D08E12F4DEE0000ABF7A6 /* SuggestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionService.swift; sourceTree = "<group>"; };
 		7B3D08E02F4DED0000ABF7A6 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		7B3D08DE2F4DEC0000ABF7A6 /* SortMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMenuView.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				7B3D08C02F4DE19800ABF7A6 /* NewListSheet.swift */,
 				7B3D08D62F4DE80000ABF7A6 /* ParticipantsView.swift */,
 				7B3D08DE2F4DEC0000ABF7A6 /* SortMenuView.swift */,
+				7B3D08E32F4DEF0000ABF7A6 /* SuggestionsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B3D08E42F4DEF0000ABF7A6 /* SuggestionsView.swift in Sources */,
 				7B3D08E22F4DEE0000ABF7A6 /* SuggestionService.swift in Sources */,
 				7B3D08DF2F4DED0000ABF7A6 /* ItemDetailView.swift in Sources */,
 				7B3D08DD2F4DEC0000ABF7A6 /* SortMenuView.swift in Sources */,
