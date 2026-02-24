@@ -44,6 +44,35 @@ final class PersistenceController {
 
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+
+        // Set up CloudKit subscriptions for real-time updates
+        if !inMemory {
+            setupCloudKitSubscriptions()
+        }
+    }
+
+    // MARK: - CloudKit Subscriptions
+
+    private func setupCloudKitSubscriptions() {
+        let container = CKContainer(identifier: "iCloud.com.isom.ListWithMe")
+        let database = container.sharedCloudDatabase
+
+        let subscription = CKDatabaseSubscription(subscriptionID: "shared-changes")
+
+        let notificationInfo = CKSubscription.NotificationInfo()
+        notificationInfo.shouldSendContentAvailable = true
+        subscription.notificationInfo = notificationInfo
+
+        let operation = CKModifySubscriptionsOperation(subscriptionsToSave: [subscription], subscriptionIDsToDelete: nil)
+        operation.modifySubscriptionsResultBlock = { result in
+            switch result {
+            case .success:
+                print("CloudKit subscription created")
+            case .failure(let error):
+                print("Failed to create subscription: \(error)")
+            }
+        }
+        database.add(operation)
     }
 
     // MARK: - Preview Helper
