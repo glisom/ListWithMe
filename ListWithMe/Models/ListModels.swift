@@ -98,3 +98,25 @@ struct Activity: Identifiable {
         self.timestamp = timestamp
     }
 }
+
+struct Participant: Identifiable, Hashable {
+    let id: String  // CloudKit user ID
+    var displayName: String
+    var isActive: Bool
+    var lastSeen: Date
+
+    init(id: String, displayName: String, isActive: Bool = false, lastSeen: Date = Date()) {
+        self.id = id
+        self.displayName = displayName
+        self.isActive = isActive
+        self.lastSeen = lastSeen
+    }
+
+    var initials: String {
+        let components = displayName.split(separator: " ")
+        if components.count >= 2 {
+            return String(components[0].prefix(1) + components[1].prefix(1)).uppercased()
+        }
+        return String(displayName.prefix(2)).uppercased()
+    }
+}
