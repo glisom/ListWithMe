@@ -16,8 +16,8 @@ extension CDList {
     }
 
     func update(from list: ShoppingList, context: NSManagedObjectContext) {
-        self.name = list.name
-        self.sortOrder = Int32(list.sortOrder)
+        name = list.name
+        sortOrder = Int32(list.sortOrder)
     }
 
     static func create(from list: ShoppingList, context: NSManagedObjectContext) -> CDList {

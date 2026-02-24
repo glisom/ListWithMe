@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B3D08CE2F4DE50000ABF7A6 /* ListWithMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B32F4DDAE500ABF7A6 /* ListWithMe.xcdatamodeld */; };
+		7B3D08CF2F4DE50000ABF7A6 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D02F4DE50000ABF7A6 /* MessagesView.swift */; };
 		7B3D08C22F4DE19800ABF7A6 /* CDListItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B82F4DE19800ABF7A6 /* CDListItem+Extensions.swift */; };
 		7B3D08C32F4DE19800ABF7A6 /* NewListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08C02F4DE19800ABF7A6 /* NewListSheet.swift */; };
 		7B3D08C42F4DE19800ABF7A6 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08BF2F4DE19800ABF7A6 /* ListsView.swift */; };
@@ -68,6 +70,7 @@
 		D4D8010521BAD65A00BC6506 /* ListWithMe MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ListWithMe MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4D8010A21BAD65A00BC6506 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		D4D8010D21BAD65A00BC6506 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		7B3D08D02F4DE50000ABF7A6 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		D4D8011221BAD65B00BC6506 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4D8011421BAD65B00BC6506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +173,7 @@
 			children = (
 				7B3D08B22F4DDA4900ABF7A6 /* ListWithMe MessagesExtension.entitlements */,
 				D4D8010D21BAD65A00BC6506 /* MessagesViewController.swift */,
+				7B3D08D02F4DE50000ABF7A6 /* MessagesView.swift */,
 				D4D8011221BAD65B00BC6506 /* Assets.xcassets */,
 				D4D8011421BAD65B00BC6506 /* Info.plist */,
 			);
@@ -276,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B3D08CE2F4DE50000ABF7A6 /* ListWithMe.xcdatamodeld in Sources */,
 				7B3D08C22F4DE19800ABF7A6 /* CDListItem+Extensions.swift in Sources */,
 				7B3D08C32F4DE19800ABF7A6 /* NewListSheet.swift in Sources */,
 				7B3D08C42F4DE19800ABF7A6 /* ListsView.swift in Sources */,
@@ -285,6 +290,7 @@
 				7B3D08C82F4DE19800ABF7A6 /* ListModels.swift in Sources */,
 				7B3D08C92F4DE19800ABF7A6 /* CDList+Extensions.swift in Sources */,
 				7B3D08CA2F4DE19800ABF7A6 /* PersistenceController.swift in Sources */,
+				7B3D08CF2F4DE50000ABF7A6 /* MessagesView.swift in Sources */,
 				D4D8010E21BAD65A00BC6506 /* MessagesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
