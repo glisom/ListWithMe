@@ -9,6 +9,9 @@ struct ListWithMeApp: App {
         WindowGroup {
             ContentView()
                 .environment(collaborationService)
+                .task {
+                    _ = await NotificationService.shared.requestAuthorization()
+                }
         }
     }
 }
