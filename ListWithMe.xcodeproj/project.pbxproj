@@ -42,6 +42,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7B3D08B22F4DDA4900ABF7A6 /* ListWithMe MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ListWithMe MessagesExtension.entitlements"; sourceTree = "<group>"; };
+		7B3D08B42F4DDAE500ABF7A6 /* ListWithMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ListWithMe.xcdatamodel; sourceTree = "<group>"; };
 		D4A4E54221BAF3E7006C491A /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		D4D800FB21BAD65700BC6506 /* ListWithMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListWithMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4D800FE21BAD65A00BC6506 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 		D4D800F421BAD65700BC6506 = {
 			isa = PBXGroup;
 			children = (
+				7B3D08B32F4DDAE500ABF7A6 /* ListWithMe.xcdatamodeld */,
 				D4D800FD21BAD65700BC6506 /* ListWithMe */,
 				D4D8010C21BAD65A00BC6506 /* ListWithMe MessagesExtension */,
 				D4D8010921BAD65A00BC6506 /* Frameworks */,
@@ -106,6 +109,7 @@
 		D4D8010C21BAD65A00BC6506 /* ListWithMe MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
+				7B3D08B22F4DDA4900ABF7A6 /* ListWithMe MessagesExtension.entitlements */,
 				D4D8010D21BAD65A00BC6506 /* MessagesViewController.swift */,
 				D4D8011E21BAD85D00BC6506 /* ListItemCell.swift */,
 				D4A4E54221BAF3E7006C491A /* ListItem.swift */,
@@ -366,10 +370,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_ENTITLEMENTS = "ListWithMe MessagesExtension/ListWithMe MessagesExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3D247B7547;
 				INFOPLIST_FILE = "ListWithMe MessagesExtension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -388,10 +393,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_ENTITLEMENTS = "ListWithMe MessagesExtension/ListWithMe MessagesExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3D247B7547;
 				INFOPLIST_FILE = "ListWithMe MessagesExtension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -414,11 +420,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3D247B7547;
 				INFOPLIST_FILE = ListWithMe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.isom.ListWithMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -431,11 +437,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3D247B7547;
 				INFOPLIST_FILE = ListWithMe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.isom.ListWithMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -471,6 +477,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7B3D08B32F4DDAE500ABF7A6 /* ListWithMe.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7B3D08B42F4DDAE500ABF7A6 /* ListWithMe.xcdatamodel */,
+			);
+			currentVersion = 7B3D08B42F4DDAE500ABF7A6 /* ListWithMe.xcdatamodel */;
+			path = ListWithMe.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D4D800F521BAD65700BC6506 /* Project object */;
 }
