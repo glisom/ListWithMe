@@ -6,6 +6,7 @@ struct ListDetailView: View {
     let onSendList: (ShoppingList) -> Void
 
     @State private var listService: ListService
+    @State private var collaborationService: CollaborationService
     @State private var newItemText = ""
     @State private var showActivitySheet = false
     @FocusState private var isAddingItem: Bool
@@ -14,11 +15,13 @@ struct ListDetailView: View {
         listId: UUID,
         userId: String,
         listService: ListService = ListService(),
+        collaborationService: CollaborationService = CollaborationService(),
         onSendList: @escaping (ShoppingList) -> Void
     ) {
         self.listId = listId
         self.userId = userId
         self._listService = State(initialValue: listService)
+        self._collaborationService = State(initialValue: collaborationService)
         self.onSendList = onSendList
     }
 
@@ -75,6 +78,12 @@ struct ListDetailView: View {
         .sheet(isPresented: $showActivitySheet) {
             ActivityFeedView(activities: listService.getActivities(for: listId))
         }
+        .onAppear {
+            collaborationService.startPresenceUpdates(for: listId)
+        }
+        .onDisappear {
+            collaborationService.stopPresenceUpdates(for: listId)
+        }
     }
 
     private func headerView(for list: ShoppingList) -> some View {
@@ -83,6 +92,8 @@ struct ListDetailView: View {
                 .font(.headline)
 
             Spacer()
+
+            ParticipantsView(participants: collaborationService.getParticipants(for: listId))
 
             Text("\(list.items.filter { $0.isComplete }.count)/\(list.items.count)")
                 .font(.subheadline)
