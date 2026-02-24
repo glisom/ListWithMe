@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B3D08DA2F4DEA0000ABF7A6 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D92F4DEA0000ABF7A6 /* NotificationService.swift */; };
 		7B3D08D72F4DE90000ABF7A6 /* CollaborationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D82F4DE90000ABF7A6 /* CollaborationService.swift */; };
 		7B3D08CE2F4DE50000ABF7A6 /* ListWithMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B32F4DDAE500ABF7A6 /* ListWithMe.xcdatamodeld */; };
 		7B3D08CF2F4DE50000ABF7A6 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D02F4DE50000ABF7A6 /* MessagesView.swift */; };
@@ -63,6 +64,7 @@
 		7B3D08D42F4DE70000ABF7A6 /* ActivityFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedView.swift; sourceTree = "<group>"; };
 		7B3D08D62F4DE80000ABF7A6 /* ParticipantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsView.swift; sourceTree = "<group>"; };
 		7B3D08D82F4DE90000ABF7A6 /* CollaborationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaborationService.swift; sourceTree = "<group>"; };
+		7B3D08D92F4DEA0000ABF7A6 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		7B3D08B92F4DE19800ABF7A6 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		7B3D08BB2F4DE19800ABF7A6 /* ListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
 		7B3D08BD2F4DE19800ABF7A6 /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				7B3D08D82F4DE90000ABF7A6 /* CollaborationService.swift */,
 				7B3D08BB2F4DE19800ABF7A6 /* ListService.swift */,
+				7B3D08D92F4DEA0000ABF7A6 /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B3D08DA2F4DEA0000ABF7A6 /* NotificationService.swift in Sources */,
 				7B3D08D72F4DE90000ABF7A6 /* CollaborationService.swift in Sources */,
 				7B3D08CE2F4DE50000ABF7A6 /* ListWithMe.xcdatamodeld in Sources */,
 				7B3D08D22F4DE60000ABF7A6 /* CDActivity+Extensions.swift in Sources */,
