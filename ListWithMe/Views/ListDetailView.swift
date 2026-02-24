@@ -9,6 +9,8 @@ struct ListDetailView: View {
     @State private var collaborationService: CollaborationService
     @State private var newItemText = ""
     @State private var showActivitySheet = false
+    @State private var sortOption: SortOption = .manual
+    @State private var editingItemCategory: ListItem? = nil
     @FocusState private var isAddingItem: Bool
 
     init(
@@ -29,6 +31,18 @@ struct ListDetailView: View {
         listService.lists.first { $0.id == listId }
     }
 
+    private var groupedItems: [(String?, [ListItem])] {
+        guard let list = list else { return [] }
+        let items = listService.sortedItems(list.items, by: sortOption)
+
+        if sortOption == .byCategory {
+            let grouped = Dictionary(grouping: items) { $0.category }
+            return grouped.sorted { ($0.key ?? "") < ($1.key ?? "") }
+        } else {
+            return [(nil, items)]
+        }
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             if let list = list {
@@ -37,33 +51,55 @@ struct ListDetailView: View {
 
                 // Items List
                 List {
-                    ForEach(list.items) { item in
-                        ListItemRow(
-                            item: item,
-                            onToggleComplete: {
-                                withAnimation(.spring(response: 0.3)) {
-                                    listService.toggleItemComplete(item, in: listId, by: userId)
-                                }
-                            },
-                            onTextChange: { newText in
-                                var updated = item
-                                updated.text = newText
-                                updated.modifiedBy = userId
-                                updated.modifiedAt = Date()
-                                listService.updateItem(updated, in: listId)
-                            },
-                            onDelete: {
-                                withAnimation {
-                                    listService.deleteItem(item, from: listId)
+                    ForEach(groupedItems, id: \.0) { category, items in
+                        Section {
+                            ForEach(items) { item in
+                                ListItemRow(
+                                    item: item,
+                                    onToggleComplete: {
+                                        withAnimation(.spring(response: 0.3)) {
+                                            listService.toggleItemComplete(item, in: listId, by: userId)
+                                        }
+                                    },
+                                    onTextChange: { newText in
+                                        var updated = item
+                                        updated.text = newText
+                                        updated.modifiedBy = userId
+                                        updated.modifiedAt = Date()
+                                        listService.updateItem(updated, in: listId)
+                                    },
+                                    onDelete: {
+                                        withAnimation {
+                                            listService.deleteItem(item, from: listId)
+                                        }
+                                    }
+                                )
+                                .contextMenu {
+                                    Button {
+                                        editingItemCategory = item
+                                    } label: {
+                                        Label("Set Category", systemImage: "folder")
+                                    }
                                 }
                             }
-                        )
+                            .onMove { source, destination in
+                                if sortOption == .manual {
+                                    listService.reorderItems(in: listId, from: source, to: destination)
+                                }
+                            }
+                        } header: {
+                            if sortOption == .byCategory {
+                                Text(category ?? "Uncategorized")
+                                    .font(.headline)
+                            }
+                        }
                     }
 
                     // Add item row
                     addItemRow
                 }
                 .listStyle(.plain)
+                .environment(\.editMode, sortOption == .manual ? .constant(.active) : .constant(.inactive))
 
                 // Send button
                 sendButton(for: list)
@@ -77,6 +113,23 @@ struct ListDetailView: View {
         }
         .sheet(isPresented: $showActivitySheet) {
             ActivityFeedView(activities: listService.getActivities(for: listId))
+        }
+        .sheet(item: $editingItemCategory) { item in
+            CategoryPickerView(
+                selectedCategory: Binding(
+                    get: { item.category },
+                    set: { newCategory in
+                        var updated = item
+                        updated.category = newCategory
+                        updated.modifiedBy = userId
+                        updated.modifiedAt = Date()
+                        listService.updateItem(updated, in: listId)
+                        editingItemCategory = nil
+                    }
+                ),
+                existingCategories: Array(Set(list?.items.compactMap { $0.category } ?? []).sorted())
+            )
+            .presentationDetents([.medium])
         }
         .onAppear {
             collaborationService.startPresenceUpdates(for: listId)
@@ -98,6 +151,8 @@ struct ListDetailView: View {
             Text("\(list.items.filter { $0.isComplete }.count)/\(list.items.count)")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
+
+            SortMenuView(selectedOption: $sortOption)
 
             Button {
                 showActivitySheet = true
