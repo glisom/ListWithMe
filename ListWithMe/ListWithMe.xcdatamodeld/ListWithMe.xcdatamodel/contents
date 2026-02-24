@@ -19,10 +19,6 @@
         <relationship name="items" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDListItem"/>
     </entity>
     <entity name="CDListItem" representedClassName="CDListItem" syncable="YES" codeGenerationType="class">
-        <attribute name="attribute" optional="YES"/>
-        <attribute name="attribute1" optional="YES"/>
-        <attribute name="attribute2" optional="YES"/>
-        <attribute name="attribute3" optional="YES"/>
         <attribute name="completedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="completedBy" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

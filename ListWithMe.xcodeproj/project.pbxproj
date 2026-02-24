@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D4A4E54321BAF3E7006C491A /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A4E54221BAF3E7006C491A /* ListItem.swift */; };
+		7B3D08C22F4DE19800ABF7A6 /* CDListItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B82F4DE19800ABF7A6 /* CDListItem+Extensions.swift */; };
+		7B3D08C32F4DE19800ABF7A6 /* NewListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08C02F4DE19800ABF7A6 /* NewListSheet.swift */; };
+		7B3D08C42F4DE19800ABF7A6 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08BF2F4DE19800ABF7A6 /* ListsView.swift */; };
+		7B3D08C52F4DE19800ABF7A6 /* ListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08BD2F4DE19800ABF7A6 /* ListDetailView.swift */; };
+		7B3D08C62F4DE19800ABF7A6 /* ListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08BB2F4DE19800ABF7A6 /* ListService.swift */; };
+		7B3D08C72F4DE19800ABF7A6 /* ListItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08BE2F4DE19800ABF7A6 /* ListItemRow.swift */; };
+		7B3D08C82F4DE19800ABF7A6 /* ListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B52F4DE19800ABF7A6 /* ListModels.swift */; };
+		7B3D08C92F4DE19800ABF7A6 /* CDList+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B72F4DE19800ABF7A6 /* CDList+Extensions.swift */; };
+		7B3D08CA2F4DE19800ABF7A6 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B92F4DE19800ABF7A6 /* PersistenceController.swift */; };
 		D4D800FF21BAD65A00BC6506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4D800FE21BAD65A00BC6506 /* Assets.xcassets */; };
 		D4D8010621BAD65A00BC6506 /* ListWithMe MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D4D8010521BAD65A00BC6506 /* ListWithMe MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D4D8010B21BAD65A00BC6506 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D8010A21BAD65A00BC6506 /* Messages.framework */; };
 		D4D8010E21BAD65A00BC6506 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8010D21BAD65A00BC6506 /* MessagesViewController.swift */; };
-		D4D8011121BAD65A00BC6506 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4D8010F21BAD65A00BC6506 /* MainInterface.storyboard */; };
 		D4D8011321BAD65B00BC6506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4D8011221BAD65B00BC6506 /* Assets.xcassets */; };
-		D4D8011F21BAD85D00BC6506 /* ListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D8011E21BAD85D00BC6506 /* ListItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,17 +50,26 @@
 /* Begin PBXFileReference section */
 		7B3D08B22F4DDA4900ABF7A6 /* ListWithMe MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ListWithMe MessagesExtension.entitlements"; sourceTree = "<group>"; };
 		7B3D08B42F4DDAE500ABF7A6 /* ListWithMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ListWithMe.xcdatamodel; sourceTree = "<group>"; };
-		D4A4E54221BAF3E7006C491A /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		7B3D08B52F4DE19800ABF7A6 /* ListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModels.swift; sourceTree = "<group>"; };
+		7B3D08B72F4DE19800ABF7A6 /* CDList+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDList+Extensions.swift"; sourceTree = "<group>"; };
+		7B3D08B82F4DE19800ABF7A6 /* CDListItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDListItem+Extensions.swift"; sourceTree = "<group>"; };
+		7B3D08B92F4DE19800ABF7A6 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		7B3D08BB2F4DE19800ABF7A6 /* ListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
+		7B3D08BD2F4DE19800ABF7A6 /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
+		7B3D08BE2F4DE19800ABF7A6 /* ListItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemRow.swift; sourceTree = "<group>"; };
+		7B3D08BF2F4DE19800ABF7A6 /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
+		7B3D08C02F4DE19800ABF7A6 /* NewListSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListSheet.swift; sourceTree = "<group>"; };
+		7B3D08CB2F4DE1A700ABF7A6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7B3D08CC2F4DE1A700ABF7A6 /* ListWithMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWithMeApp.swift; sourceTree = "<group>"; };
+		7B3D08CD2F4DE1AF00ABF7A6 /* ListWithMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ListWithMe-Bridging-Header.h"; sourceTree = "<group>"; };
 		D4D800FB21BAD65700BC6506 /* ListWithMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListWithMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4D800FE21BAD65A00BC6506 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4D8010021BAD65A00BC6506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4D8010521BAD65A00BC6506 /* ListWithMe MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ListWithMe MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4D8010A21BAD65A00BC6506 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		D4D8010D21BAD65A00BC6506 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
-		D4D8011021BAD65A00BC6506 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		D4D8011221BAD65B00BC6506 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4D8011421BAD65B00BC6506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4D8011E21BAD85D00BC6506 /* ListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,10 +84,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B3D08B62F4DE19800ABF7A6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7B3D08B52F4DE19800ABF7A6 /* ListModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7B3D08BA2F4DE19800ABF7A6 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				7B3D08B72F4DE19800ABF7A6 /* CDList+Extensions.swift */,
+				7B3D08B82F4DE19800ABF7A6 /* CDListItem+Extensions.swift */,
+				7B3D08B92F4DE19800ABF7A6 /* PersistenceController.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		7B3D08BC2F4DE19800ABF7A6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7B3D08BB2F4DE19800ABF7A6 /* ListService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7B3D08C12F4DE19800ABF7A6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7B3D08BD2F4DE19800ABF7A6 /* ListDetailView.swift */,
+				7B3D08BE2F4DE19800ABF7A6 /* ListItemRow.swift */,
+				7B3D08BF2F4DE19800ABF7A6 /* ListsView.swift */,
+				7B3D08C02F4DE19800ABF7A6 /* NewListSheet.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		D4D800F421BAD65700BC6506 = {
 			isa = PBXGroup;
 			children = (
-				7B3D08B32F4DDAE500ABF7A6 /* ListWithMe.xcdatamodeld */,
 				D4D800FD21BAD65700BC6506 /* ListWithMe */,
 				D4D8010C21BAD65A00BC6506 /* ListWithMe MessagesExtension */,
 				D4D8010921BAD65A00BC6506 /* Frameworks */,
@@ -92,8 +143,16 @@
 		D4D800FD21BAD65700BC6506 /* ListWithMe */ = {
 			isa = PBXGroup;
 			children = (
+				7B3D08CB2F4DE1A700ABF7A6 /* ContentView.swift */,
+				7B3D08CC2F4DE1A700ABF7A6 /* ListWithMeApp.swift */,
+				7B3D08B62F4DE19800ABF7A6 /* Models */,
+				7B3D08BA2F4DE19800ABF7A6 /* Persistence */,
+				7B3D08BC2F4DE19800ABF7A6 /* Services */,
+				7B3D08C12F4DE19800ABF7A6 /* Views */,
 				D4D800FE21BAD65A00BC6506 /* Assets.xcassets */,
 				D4D8010021BAD65A00BC6506 /* Info.plist */,
+				7B3D08B32F4DDAE500ABF7A6 /* ListWithMe.xcdatamodeld */,
+				7B3D08CD2F4DE1AF00ABF7A6 /* ListWithMe-Bridging-Header.h */,
 			);
 			path = ListWithMe;
 			sourceTree = "<group>";
@@ -111,9 +170,6 @@
 			children = (
 				7B3D08B22F4DDA4900ABF7A6 /* ListWithMe MessagesExtension.entitlements */,
 				D4D8010D21BAD65A00BC6506 /* MessagesViewController.swift */,
-				D4D8011E21BAD85D00BC6506 /* ListItemCell.swift */,
-				D4A4E54221BAF3E7006C491A /* ListItem.swift */,
-				D4D8010F21BAD65A00BC6506 /* MainInterface.storyboard */,
 				D4D8011221BAD65B00BC6506 /* Assets.xcassets */,
 				D4D8011421BAD65B00BC6506 /* Info.plist */,
 			);
@@ -169,6 +225,7 @@
 				TargetAttributes = {
 					D4D800FA21BAD65700BC6506 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 2620;
 					};
 					D4D8010421BAD65A00BC6506 = {
 						CreatedOnToolsVersion = 10.1;
@@ -209,7 +266,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4D8011321BAD65B00BC6506 /* Assets.xcassets in Resources */,
-				D4D8011121BAD65A00BC6506 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,8 +276,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4A4E54321BAF3E7006C491A /* ListItem.swift in Sources */,
-				D4D8011F21BAD85D00BC6506 /* ListItemCell.swift in Sources */,
+				7B3D08C22F4DE19800ABF7A6 /* CDListItem+Extensions.swift in Sources */,
+				7B3D08C32F4DE19800ABF7A6 /* NewListSheet.swift in Sources */,
+				7B3D08C42F4DE19800ABF7A6 /* ListsView.swift in Sources */,
+				7B3D08C52F4DE19800ABF7A6 /* ListDetailView.swift in Sources */,
+				7B3D08C62F4DE19800ABF7A6 /* ListService.swift in Sources */,
+				7B3D08C72F4DE19800ABF7A6 /* ListItemRow.swift in Sources */,
+				7B3D08C82F4DE19800ABF7A6 /* ListModels.swift in Sources */,
+				7B3D08C92F4DE19800ABF7A6 /* CDList+Extensions.swift in Sources */,
+				7B3D08CA2F4DE19800ABF7A6 /* PersistenceController.swift in Sources */,
 				D4D8010E21BAD65A00BC6506 /* MessagesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,17 +298,6 @@
 			targetProxy = D4D8010721BAD65A00BC6506 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D4D8010F21BAD65A00BC6506 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D4D8011021BAD65A00BC6506 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D4D8011521BAD65B00BC6506 /* Debug */ = {
@@ -417,6 +469,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3D247B7547;
 				INFOPLIST_FILE = ListWithMe/Info.plist;
@@ -424,6 +477,8 @@
 				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.isom.ListWithMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ListWithMe/ListWithMe-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -434,6 +489,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3D247B7547;
 				INFOPLIST_FILE = ListWithMe/Info.plist;
@@ -441,6 +497,7 @@
 				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.isom.ListWithMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ListWithMe/ListWithMe-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
