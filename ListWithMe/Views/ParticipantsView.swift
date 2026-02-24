@@ -46,24 +46,23 @@ struct ParticipantAvatar: View {
     let participant: Participant
 
     var body: some View {
-        ZStack {
-            Circle()
-                .fill(avatarColor)
-                .frame(width: 32, height: 32)
-
-            Text(participant.initials)
-                .font(.system(size: 12, weight: .semibold))
-                .foregroundColor(.white)
-
-            if participant.isActive {
-                Circle()
-                    .fill(Color.green)
-                    .frame(width: 10, height: 10)
-                    .overlay(Circle().stroke(Color(UIColor.systemBackground), lineWidth: 1.5))
-                    .offset(x: 10, y: 10)
+        Circle()
+            .fill(avatarColor)
+            .frame(width: 32, height: 32)
+            .overlay(
+                Text(participant.initials)
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundColor(.white)
+            )
+            .overlay(Circle().stroke(Color(UIColor.systemBackground), lineWidth: 2))
+            .overlay(alignment: .bottomTrailing) {
+                if participant.isActive {
+                    Circle()
+                        .fill(Color.green)
+                        .frame(width: 10, height: 10)
+                        .overlay(Circle().stroke(Color(UIColor.systemBackground), lineWidth: 1.5))
+                }
             }
-        }
-        .overlay(Circle().stroke(Color(UIColor.systemBackground), lineWidth: 2))
     }
 
     private var avatarColor: Color {
