@@ -56,6 +56,13 @@ struct ListsView: View {
                                 .onTapGesture {
                                     onSelectList(list)
                                 }
+                                .contextMenu {
+                                    Button {
+                                        _ = listService.duplicateList(list, createdBy: userId)
+                                    } label: {
+                                        Label("Duplicate", systemImage: "doc.on.doc")
+                                    }
+                                }
                         }
                     }
                     .padding()

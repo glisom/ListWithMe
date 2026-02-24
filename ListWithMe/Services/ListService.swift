@@ -55,6 +55,30 @@ final class ListService {
         fetchLists()
     }
 
+    func duplicateList(_ list: ShoppingList, createdBy: String) -> ShoppingList {
+        let newList = ShoppingList(name: "\(list.name) (Copy)", createdBy: createdBy)
+        let cdList = CDList.create(from: newList, context: context)
+
+        // Copy all items (without completion status)
+        for item in list.items {
+            var newItem = ListItem(
+                text: item.text,
+                createdBy: createdBy,
+                category: item.category,
+                quantity: item.quantity,
+                note: item.note,
+                dueDate: item.dueDate,
+                priority: item.priority
+            )
+            newItem.sortOrder = item.sortOrder
+            _ = CDListItem.create(from: newItem, list: cdList, context: context)
+        }
+
+        saveContext()
+        fetchLists()
+        return cdList.toShoppingList()
+    }
+
     func getList(id: UUID) -> ShoppingList? {
         guard let cdList = CDList.fetch(id: id, context: context) else { return nil }
         return cdList.toShoppingList()
