@@ -88,4 +88,13 @@ struct Activity: Identifiable {
         self.itemText = itemText
         self.timestamp = Date()
     }
+
+    init(id: UUID, userId: String, userName: String, action: ActivityAction, itemText: String?, timestamp: Date) {
+        self.id = id
+        self.userId = userId
+        self.userName = userName
+        self.action = action
+        self.itemText = itemText
+        self.timestamp = timestamp
+    }
 }
