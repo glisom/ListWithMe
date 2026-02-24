@@ -7,6 +7,9 @@ final class ListService {
     private let persistence: PersistenceController
     private(set) var lists: [ShoppingList] = []
 
+    var currentUserId: String = ""
+    var currentUserName: String = ""
+
     var context: NSManagedObjectContext {
         persistence.viewContext
     }
@@ -66,6 +69,7 @@ final class ListService {
         _ = CDListItem.create(from: item, list: cdList, context: context)
         saveContext()
         fetchLists()
+        recordActivity(for: listId, action: .added, itemText: text)
     }
 
     func updateItem(_ item: ListItem, in listId: UUID) {
@@ -75,7 +79,8 @@ final class ListService {
         fetchLists()
     }
 
-    func deleteItem(_ item: ListItem) {
+    func deleteItem(_ item: ListItem, from listId: UUID) {
+        recordActivity(for: listId, action: .deleted, itemText: item.text)
         guard let cdItem = CDListItem.fetch(id: item.id, context: context) else { return }
         context.delete(cdItem)
         saveContext()
@@ -86,10 +91,31 @@ final class ListService {
         var updatedItem = item
         if item.isComplete {
             updatedItem.markIncomplete(by: userId)
+            recordActivity(for: listId, action: .uncompleted, itemText: item.text)
         } else {
             updatedItem.markComplete(by: userId)
+            recordActivity(for: listId, action: .completed, itemText: item.text)
         }
         updateItem(updatedItem, in: listId)
+    }
+
+    // MARK: - Activity Operations
+
+    func recordActivity(for listId: UUID, action: ActivityAction, itemText: String? = nil) {
+        guard let cdList = CDList.fetch(id: listId, context: context) else { return }
+
+        let activity = Activity(
+            userId: currentUserId,
+            userName: currentUserName,
+            action: action,
+            itemText: itemText
+        )
+        _ = CDActivity.create(from: activity, list: cdList, context: context)
+        saveContext()
+    }
+
+    func getActivities(for listId: UUID) -> [Activity] {
+        return CDActivity.fetchAll(for: listId, context: context).compactMap { $0.toActivity() }
     }
 
     // MARK: - Helpers

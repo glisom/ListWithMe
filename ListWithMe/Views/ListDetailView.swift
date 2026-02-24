@@ -50,7 +50,7 @@ struct ListDetailView: View {
                             },
                             onDelete: {
                                 withAnimation {
-                                    listService.deleteItem(item)
+                                    listService.deleteItem(item, from: listId)
                                 }
                             }
                         )
