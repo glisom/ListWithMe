@@ -7,6 +7,7 @@ struct ListDetailView: View {
 
     @State private var listService: ListService
     @State private var newItemText = ""
+    @State private var showActivitySheet = false
     @FocusState private var isAddingItem: Bool
 
     init(
@@ -71,6 +72,9 @@ struct ListDetailView: View {
                 )
             }
         }
+        .sheet(isPresented: $showActivitySheet) {
+            ActivityFeedView(activities: listService.getActivities(for: listId))
+        }
     }
 
     private func headerView(for list: ShoppingList) -> some View {
@@ -83,6 +87,13 @@ struct ListDetailView: View {
             Text("\(list.items.filter { $0.isComplete }.count)/\(list.items.count)")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
+
+            Button {
+                showActivitySheet = true
+            } label: {
+                Image(systemName: "clock.arrow.circlepath")
+                    .font(.title3)
+            }
         }
         .padding()
         .background(.ultraThinMaterial)
