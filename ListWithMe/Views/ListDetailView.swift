@@ -14,6 +14,8 @@ struct ListDetailView: View {
     @State private var editingItemDetails: ListItem? = nil
     @State private var suggestionService = SuggestionService()
     @State private var searchText = ""
+    @State private var isSelectionMode = false
+    @State private var selectedItems: Set<UUID> = []
     @FocusState private var isAddingItem: Bool
 
     init(
@@ -72,26 +74,39 @@ struct ListDetailView: View {
                     ForEach(filteredGroupedItems, id: \.0) { category, items in
                         Section {
                             ForEach(items) { item in
-                                ListItemRow(
-                                    item: item,
-                                    onToggleComplete: {
-                                        withAnimation(.spring(response: 0.3)) {
-                                            listService.toggleItemComplete(item, in: listId, by: userId)
-                                        }
-                                    },
-                                    onTextChange: { newText in
-                                        var updated = item
-                                        updated.text = newText
-                                        updated.modifiedBy = userId
-                                        updated.modifiedAt = Date()
-                                        listService.updateItem(updated, in: listId)
-                                    },
-                                    onDelete: {
-                                        withAnimation {
-                                            listService.deleteItem(item, from: listId)
-                                        }
+                                HStack {
+                                    if isSelectionMode {
+                                        Image(systemName: selectedItems.contains(item.id) ? "checkmark.circle.fill" : "circle")
+                                            .foregroundStyle(selectedItems.contains(item.id) ? .blue : .secondary)
+                                            .onTapGesture {
+                                                if selectedItems.contains(item.id) {
+                                                    selectedItems.remove(item.id)
+                                                } else {
+                                                    selectedItems.insert(item.id)
+                                                }
+                                            }
                                     }
-                                )
+                                    ListItemRow(
+                                        item: item,
+                                        onToggleComplete: {
+                                            withAnimation(.spring(response: 0.3)) {
+                                                listService.toggleItemComplete(item, in: listId, by: userId)
+                                            }
+                                        },
+                                        onTextChange: { newText in
+                                            var updated = item
+                                            updated.text = newText
+                                            updated.modifiedBy = userId
+                                            updated.modifiedAt = Date()
+                                            listService.updateItem(updated, in: listId)
+                                        },
+                                        onDelete: {
+                                            withAnimation {
+                                                listService.deleteItem(item, from: listId)
+                                            }
+                                        }
+                                    )
+                                }
                                 .contextMenu {
                                     Button {
                                         editingItemDetails = item
@@ -184,6 +199,25 @@ struct ListDetailView: View {
         .onDisappear {
             collaborationService.stopPresenceUpdates(for: listId)
         }
+        .toolbar {
+            if isSelectionMode && !selectedItems.isEmpty {
+                ToolbarItemGroup(placement: .bottomBar) {
+                    Button {
+                        listService.completeItems(selectedItems, in: listId, by: userId)
+                        selectedItems.removeAll()
+                    } label: {
+                        Label("Complete", systemImage: "checkmark")
+                    }
+                    Spacer()
+                    Button(role: .destructive) {
+                        listService.deleteItems(selectedItems, from: listId)
+                        selectedItems.removeAll()
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                }
+            }
+        }
     }
 
     private func headerView(for list: ShoppingList) -> some View {
@@ -202,6 +236,13 @@ struct ListDetailView: View {
             SortMenuView(selectedOption: $sortOption)
 
             Menu {
+                Button {
+                    isSelectionMode.toggle()
+                    if !isSelectionMode { selectedItems.removeAll() }
+                } label: {
+                    Label(isSelectionMode ? "Done Selecting" : "Select Items", systemImage: "checkmark.circle")
+                }
+
                 Button(role: .destructive) {
                     withAnimation {
                         listService.clearCompleted(from: listId)

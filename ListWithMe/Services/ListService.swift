@@ -161,6 +161,32 @@ final class ListService {
         fetchLists()
     }
 
+    func deleteItems(_ itemIds: Set<UUID>, from listId: UUID) {
+        for itemId in itemIds {
+            if let cdItem = CDListItem.fetch(id: itemId, context: context) {
+                context.delete(cdItem)
+            }
+        }
+        saveContext()
+        fetchLists()
+        recordActivity(for: listId, action: .deleted, itemText: "\(itemIds.count) items")
+    }
+
+    func completeItems(_ itemIds: Set<UUID>, in listId: UUID, by userId: String) {
+        for itemId in itemIds {
+            if let cdItem = CDListItem.fetch(id: itemId, context: context) {
+                cdItem.isComplete = true
+                cdItem.completedAt = Date()
+                cdItem.completedBy = userId
+                cdItem.modifiedBy = userId
+                cdItem.modifiedAt = Date()
+            }
+        }
+        saveContext()
+        fetchLists()
+        recordActivity(for: listId, action: .completed, itemText: "\(itemIds.count) items")
+    }
+
     // MARK: - Activity Operations
 
     func recordActivity(for listId: UUID, action: ActivityAction, itemText: String? = nil) {
