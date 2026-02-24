@@ -99,6 +99,25 @@ final class ListService {
         updateItem(updatedItem, in: listId)
     }
 
+    func reorderItems(in listId: UUID, from source: IndexSet, to destination: Int) {
+        guard let cdList = CDList.fetch(id: listId, context: context) else { return }
+
+        // Get current items sorted by sortOrder
+        var items = (cdList.items as? Set<CDListItem> ?? [])
+            .sorted { $0.sortOrder < $1.sortOrder }
+
+        // Perform the move
+        items.move(fromOffsets: source, toOffset: destination)
+
+        // Update sortOrder for all items
+        for (index, item) in items.enumerated() {
+            item.sortOrder = Int32(index)
+        }
+
+        saveContext()
+        fetchLists()
+    }
+
     // MARK: - Activity Operations
 
     func recordActivity(for listId: UUID, action: ActivityAction, itemText: String? = nil) {
@@ -116,6 +135,36 @@ final class ListService {
 
     func getActivities(for listId: UUID) -> [Activity] {
         return CDActivity.fetchAll(for: listId, context: context).compactMap { $0.toActivity() }
+    }
+
+    // MARK: - Sorting
+
+    func sortedItems(_ items: [ListItem], by option: SortOption) -> [ListItem] {
+        switch option {
+        case .manual:
+            return items.sorted { $0.sortOrder < $1.sortOrder }
+        case .alphabetical:
+            return items.sorted { $0.text.localizedCaseInsensitiveCompare($1.text) == .orderedAscending }
+        case .alphabeticalReversed:
+            return items.sorted { $0.text.localizedCaseInsensitiveCompare($1.text) == .orderedDescending }
+        case .newestFirst:
+            return items.sorted { $0.createdAt > $1.createdAt }
+        case .oldestFirst:
+            return items.sorted { $0.createdAt < $1.createdAt }
+        case .incompleteFirst:
+            return items.sorted { !$0.isComplete && $1.isComplete }
+        case .completeFirst:
+            return items.sorted { $0.isComplete && !$1.isComplete }
+        case .byCategory:
+            return items.sorted {
+                let cat0 = $0.category ?? ""
+                let cat1 = $1.category ?? ""
+                if cat0 == cat1 {
+                    return $0.sortOrder < $1.sortOrder
+                }
+                return cat0 < cat1
+            }
+        }
     }
 
     // MARK: - Helpers
