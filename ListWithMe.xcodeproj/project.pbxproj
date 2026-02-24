@@ -140,6 +140,7 @@
 				7B3D08BF2F4DE19800ABF7A6 /* ListsView.swift */,
 				7B3D08C02F4DE19800ABF7A6 /* NewListSheet.swift */,
 				7B3D08D62F4DE80000ABF7A6 /* ParticipantsView.swift */,
+				7B3D08DE2F4DEC0000ABF7A6 /* SortMenuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -300,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B3D08DD2F4DEC0000ABF7A6 /* SortMenuView.swift in Sources */,
 				7B3D08DB2F4DEB0000ABF7A6 /* CategoryPickerView.swift in Sources */,
 				7B3D08DA2F4DEA0000ABF7A6 /* NotificationService.swift in Sources */,
 				7B3D08D72F4DE90000ABF7A6 /* CollaborationService.swift in Sources */,
