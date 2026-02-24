@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B3D08DD2F4DEC0000ABF7A6 /* SortMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08DE2F4DEC0000ABF7A6 /* SortMenuView.swift */; };
+		7B3D08DB2F4DEB0000ABF7A6 /* CategoryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08DC2F4DEB0000ABF7A6 /* CategoryPickerView.swift */; };
 		7B3D08DA2F4DEA0000ABF7A6 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D92F4DEA0000ABF7A6 /* NotificationService.swift */; };
 		7B3D08D72F4DE90000ABF7A6 /* CollaborationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08D82F4DE90000ABF7A6 /* CollaborationService.swift */; };
 		7B3D08CE2F4DE50000ABF7A6 /* ListWithMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B3D08B32F4DDAE500ABF7A6 /* ListWithMe.xcdatamodeld */; };
@@ -55,6 +57,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7B3D08DE2F4DEC0000ABF7A6 /* SortMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMenuView.swift; sourceTree = "<group>"; };
+		7B3D08DC2F4DEB0000ABF7A6 /* CategoryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerView.swift; sourceTree = "<group>"; };
 		7B3D08B22F4DDA4900ABF7A6 /* ListWithMe MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ListWithMe MessagesExtension.entitlements"; sourceTree = "<group>"; };
 		7B3D08B42F4DDAE500ABF7A6 /* ListWithMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ListWithMe.xcdatamodel; sourceTree = "<group>"; };
 		7B3D08B52F4DE19800ABF7A6 /* ListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModels.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				7B3D08D42F4DE70000ABF7A6 /* ActivityFeedView.swift */,
+				7B3D08DC2F4DEB0000ABF7A6 /* CategoryPickerView.swift */,
 				7B3D08BD2F4DE19800ABF7A6 /* ListDetailView.swift */,
 				7B3D08BE2F4DE19800ABF7A6 /* ListItemRow.swift */,
 				7B3D08BF2F4DE19800ABF7A6 /* ListsView.swift */,
@@ -295,6 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B3D08DB2F4DEB0000ABF7A6 /* CategoryPickerView.swift in Sources */,
 				7B3D08DA2F4DEA0000ABF7A6 /* NotificationService.swift in Sources */,
 				7B3D08D72F4DE90000ABF7A6 /* CollaborationService.swift in Sources */,
 				7B3D08CE2F4DE50000ABF7A6 /* ListWithMe.xcdatamodeld in Sources */,
