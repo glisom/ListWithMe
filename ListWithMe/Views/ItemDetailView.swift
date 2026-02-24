@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ItemDetailView: View {
-    @Binding var item: ListItem
+    let item: ListItem
     let existingCategories: [String]
     let onSave: (ListItem) -> Void
     @Environment(\.dismiss) private var dismiss
@@ -14,17 +14,17 @@ struct ItemDetailView: View {
     @State private var hasDueDate: Bool
     @State private var priority: Priority
 
-    init(item: Binding<ListItem>, existingCategories: [String], onSave: @escaping (ListItem) -> Void) {
-        self._item = item
+    init(item: ListItem, existingCategories: [String], onSave: @escaping (ListItem) -> Void) {
+        self.item = item
         self.existingCategories = existingCategories
         self.onSave = onSave
-        self._text = State(initialValue: item.wrappedValue.text)
-        self._quantity = State(initialValue: item.wrappedValue.quantity)
-        self._note = State(initialValue: item.wrappedValue.note ?? "")
-        self._category = State(initialValue: item.wrappedValue.category)
-        self._dueDate = State(initialValue: item.wrappedValue.dueDate ?? Date())
-        self._hasDueDate = State(initialValue: item.wrappedValue.dueDate != nil)
-        self._priority = State(initialValue: item.wrappedValue.priority)
+        self._text = State(initialValue: item.text)
+        self._quantity = State(initialValue: item.quantity)
+        self._note = State(initialValue: item.note ?? "")
+        self._category = State(initialValue: item.category)
+        self._dueDate = State(initialValue: item.dueDate ?? Date())
+        self._hasDueDate = State(initialValue: item.dueDate != nil)
+        self._priority = State(initialValue: item.priority)
     }
 
     var body: some View {
@@ -94,6 +94,9 @@ struct ItemDetailView: View {
 }
 
 #Preview {
-    @Previewable @State var item = ListItem(text: "Milk", createdBy: "user1")
-    ItemDetailView(item: $item, existingCategories: ["Dairy", "Produce"], onSave: { _ in })
+    ItemDetailView(
+        item: ListItem(text: "Milk", createdBy: "user1"),
+        existingCategories: ["Dairy", "Produce"],
+        onSave: { _ in }
+    )
 }

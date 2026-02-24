@@ -11,6 +11,8 @@ struct ListDetailView: View {
     @State private var showActivitySheet = false
     @State private var sortOption: SortOption = .manual
     @State private var editingItemCategory: ListItem? = nil
+    @State private var editingItemDetails: ListItem? = nil
+    @State private var suggestionService = SuggestionService()
     @FocusState private var isAddingItem: Bool
 
     init(
@@ -41,6 +43,10 @@ struct ListDetailView: View {
         } else {
             return [(nil, items)]
         }
+    }
+
+    private var currentSuggestions: [String] {
+        suggestionService.suggestions(for: newItemText)
     }
 
     var body: some View {
@@ -76,6 +82,11 @@ struct ListDetailView: View {
                                 )
                                 .contextMenu {
                                     Button {
+                                        editingItemDetails = item
+                                    } label: {
+                                        Label("Edit Details", systemImage: "pencil.and.list.clipboard")
+                                    }
+                                    Button {
                                         editingItemCategory = item
                                     } label: {
                                         Label("Set Category", systemImage: "folder")
@@ -93,6 +104,15 @@ struct ListDetailView: View {
                                     .font(.headline)
                             }
                         }
+                    }
+
+                    if !newItemText.isEmpty && !currentSuggestions.isEmpty {
+                        SuggestionsView(suggestions: currentSuggestions) { selected in
+                            newItemText = selected
+                            addItem()
+                        }
+                        .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
                     }
 
                     // Add item row
@@ -130,6 +150,20 @@ struct ListDetailView: View {
                 existingCategories: Array(Set(list?.items.compactMap { $0.category } ?? []).sorted())
             )
             .presentationDetents([.medium])
+        }
+        .sheet(item: $editingItemDetails) { item in
+            ItemDetailView(
+                item: item,
+                existingCategories: Array(Set(list?.items.compactMap { $0.category } ?? []).sorted()),
+                onSave: { updatedItem in
+                    var finalItem = updatedItem
+                    finalItem.modifiedBy = userId
+                    finalItem.modifiedAt = Date()
+                    listService.updateItem(finalItem, in: listId)
+                    editingItemDetails = nil
+                }
+            )
+            .presentationDetents([.large])
         }
         .onAppear {
             collaborationService.startPresenceUpdates(for: listId)
@@ -196,6 +230,7 @@ struct ListDetailView: View {
             listService.addItem(to: listId, text: newItemText, createdBy: userId)
         }
         newItemText = ""
+        suggestionService.loadRecentItems()
         isAddingItem = true
     }
 }
